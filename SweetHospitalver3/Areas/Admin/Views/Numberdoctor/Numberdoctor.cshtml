@@ -1,0 +1,210 @@
+﻿@model PagedList.PagedList<SweetHospitalver3.Models.PHIEUHEN>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Phiếu hẹn với bác sĩ";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    SweetHospitalver3.Models.HospitalDbContext bb = new SweetHospitalver3.Models.HospitalDbContext();
+}
+<style>
+    .table-editpencil:hover, .bi-pencil:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #22FC00;
+    }
+
+    .table-editpencil {
+        margin-right: 15px;
+    }
+
+    td, th {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .table-statusedit-circlegreen {
+        height: 10px;
+        width: 10px;
+        background-color: #22FC00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+    .table-seepencil:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+    }
+    .table-statusedit-circlered {
+        height: 10px;
+        width: 10px;
+        background-color: #FC0004;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-statusedit-circleyellow {
+        height: 10px;
+        width: 10px;
+        background-color: #FCDB00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-editdelete:hover, .bi-trash:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #FC0004;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .account-search {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .account-search2 {
+        height: 40px !important;
+        border: 1px solid #EBF2F7 !important;
+        border-radius: 5px;
+        width: 30%;
+    }
+
+    .account-search3 {
+        width: 20% !important;
+        height: 40px !important;
+    }
+
+    tr:hover {
+        cursor: pointer;
+    }
+
+    .account-add1:hover {
+        transform: translateY(-5px);
+    }
+
+    h2 {
+        margin-bottom: 15px;
+    }
+
+    .btn-outline-primary:hover {
+        transform: translateY(-8px);
+    }
+    .pagination {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+    }
+
+        .pagination li {
+            padding: 10px;
+            display: inline-block;
+            margin: 0 3px;
+            cursor: pointer;
+            color: #009CFF;
+            border-color: #009CFF;
+            font-size: 15px;
+        }
+
+    li.active {
+        background-color: #FFFFFF;
+        border: 1px solid #009CFF;
+    }
+
+    .pagination li:hover {
+        background-color: #FFFFFF;
+        border: 1px solid #009CFF;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Danh sách phiếu hẹn với bác sĩ</h2>
+    @using (Html.BeginForm("Numberdoctor", "Numberdoctor", FormMethod.Get))
+    {
+        <div class="account-search">
+            <div class="form-floating mb-3">
+                <select class="form-select"
+                        id="floatingSelect"
+                        aria-label="Floating label select example" name="searchKhoa">
+                    <option selected></option>
+                    @foreach (var dskhoa in bb.DSKHOA)
+                    {
+                        <option value="@dskhoa.Khoa">@dskhoa.Khoa</option>
+                    }
+                </select>
+                <label for="floatingSelect">Khoa</label>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select"
+                        id="floatingSelect"
+                        aria-label="Floating label select example" name="searchTrangthai">
+                    <option selected></option>
+                    <option value="Đã khám">Đã khám</option>
+                    <option value="Chưa khám">Chưa khám</option>
+                    <option value="Đã hủy lịch">Đã hủy lịch</option>
+                </select>
+                <label for="floatingSelect">Trạng thái</label>
+            </div>
+            @*<div class="form-floating mb-3">
+
+                <input type="date"
+                       class="form-control"
+                       id="floatingPassword"
+                       placeholder="Password" name="searchNgay" />
+                <label for="floatingPassword">Ngày khám</label>
+            </div>*@
+            <input class="form-control border-0 account-search2" type="search" placeholder="Search" name="searchString" value="@ViewBag.SearchString">
+            <input type="submit" class="btn btn-outline-primary m-2" value="Tìm kiếm" />
+        </div>
+    }
+    <div class="col-12">
+        <div class="bg-light rounded h-100 p-4">
+            <div class="table-responsive">
+                <button type="button" class="btn btn-outline-primary m-2" onclick="window.location.href='/Admin/Numberdoctor/Createndo';">+ Thêm lịch hẹn mới</button>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Mã phiếu hẹn</th>
+                            <th scope="col">Họ và tên</th>
+                            <th scope="col">Khoa</th>
+                            <th scope="col">Bác sĩ</th>
+                            <th scope="col">Ngày hẹn</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var items in Model)
+                        {
+                            <tr id="row_@items.MaPhieu">
+                                <td>@items.MaPhieu</td>
+                                <td>@items.HOSO.HoTen</td>
+                                <td>@items.THOIGIANBS.BACSI.Khoa</td>
+                                <td>@items.THOIGIANBS.BACSI.HoTen</td>
+                                <td>@items.THOIGIANBS.Gio</td>
+                                <td><div class="@(@items.TrangThai == "Đã khám" ? "table-statusedit-circlegreen" :"") @(@items.TrangThai == "Đã hủy lịch" ? "table-statusedit-circlered" :"") @(@items.TrangThai == "Chưa khám" ? "table-statusedit-circleyellow" :"")"></div> @items.TrangThai</td>
+                                <td>
+                                    <a href="/Admin/Numberdoctor/Numberdoctorinfor/@items.MaPhieu" class="table-seepencil">Xem</a>   
+                                    <a href="/Admin/Numberdoctor/Editndo/@items.MaPhieu" class="table-editpencil">Sửa</a>
+                                    @Ajax.ActionLink("Xóa", "Delete", new { @id = items.MaPhieu }, new AjaxOptions { Confirm = "Bạn có muốn xóa phiếu hẹn này?", OnComplete = "$('#row_" + @items.MaPhieu + "').remove()", HttpMethod = "Delete" }, new { @class = "table-editdelete" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model, page => Url.Action("Numberdoctor", new { page, @searchString = @ViewBag.SearchString }))
+            </div>
+        </div>
+    </div>
+</div>
+
+

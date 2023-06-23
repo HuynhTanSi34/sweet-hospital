@@ -1,0 +1,110 @@
+﻿@model SweetHospitalver3.Models.BACSI
+
+@{
+    ViewBag.Title = "Doctorinfor";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<style>
+    .col-sm-4 {
+        width: 40% !important;
+    }
+
+    .col-sm-8 {
+        width: 60% !important;
+    }
+
+    .g41 {
+        width: 40% !important;
+        background-color: white !important;
+    }
+
+    .g42 {
+        width: 60% !important;
+    }
+
+    .p-4 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .p4img {
+        width: 70%;
+        height: 70%;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .reupsubmit {
+        margin: 30px 0 30px 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .m-21 {
+        margin: 8px 70px 8px 8px;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Thông tin Bác sĩ</h2>
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6 g41">
+            <div class="bg-light rounded h-100 p-4">
+                <img src="~/Areas/Admin/Content/img/testimonial-1.jpg" class="p4img">
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-6 g42">
+            <div class="bg-light rounded h-100 p-4">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Họ và tên</dt>
+                    <dd class="col-sm-8">@Model.HoTen</dd>
+
+                    <dt class="col-sm-4">Mã Bác sĩ</dt>
+                    <dd class="col-sm-8">@Model.MaBS</dd>
+
+                    <dt class="col-sm-4">Giới tính</dt>
+                    <dd class="col-sm-8">@Model.GioiTinh</dd>
+
+                    <dt class="col-sm-4">CMND/CCCD</dt>
+                    <dd class="col-sm-8">@Model.CCCD</dd>
+
+                    <dt class="col-sm-4">Ngày tháng năm sinh</dt>
+                    <dd class="col-sm-8">@Model.NgaySinh</dd>
+
+                    <dt class="col-sm-4">Số điện thoại</dt>
+                    <dd class="col-sm-8">@Model.Sdt</dd>
+
+                    <dt class="col-sm-4">Email</dt>
+                    <dd class="col-sm-8">@Model.Email</dd>
+
+                    <dt class="col-sm-4">Địa chỉ</dt>
+                    <dd class="col-sm-8">@Model.DiaChi</dd>
+
+                    <dt class="col-sm-4">Tên tài khoản</dt>
+                    <dd class="col-sm-8">@Model.TK</dd>
+
+                    <dt class="col-sm-4">Ngày bắt đầu làm việc</dt>
+                    <dd class="col-sm-8">@Model.NgayBD.ToString("dd/MM/yyyy")</dd>
+
+                    <dt class="col-sm-4">Khoa</dt>
+                    <dd class="col-sm-8">@Model.Khoa</dd>
+
+                    <dt class="col-sm-4">Giá khám</dt>
+                    <dd class="col-sm-8">@Model.GiaKham VNĐ</dd>
+
+                    <dt class="col-sm-4">Trạng thái làm việc</dt>
+                    <dd class="col-sm-8">@Model.TrangThai</dd>
+
+                    <dt class="col-sm-4">Lương</dt>
+                    <dd class="col-sm-8">@Model.Lương VNĐ</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="reupsubmit">
+        <button type="button" class="btn btn-outline-secondary m-21" onclick="window.location.href='/Admin/Doctor/Doctor';">Quay lại</button>
+        <button type="button" class="btn btn-outline-primary m-2" onclick="window.location.href = '/Admin/Doctor/Editdoctor/@Model.MaBS';">Sửa</button>
+    </div>
+</div>

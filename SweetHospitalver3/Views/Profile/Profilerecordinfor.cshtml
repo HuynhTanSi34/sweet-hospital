@@ -1,0 +1,367 @@
+﻿@model  SweetHospitalver3.Models.HOSO
+@{
+    ViewBag.Title = "Profilerecordinfor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .hoso-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        padding-top: 20px;
+    }
+
+    .hoso-contentl {
+        width: 380px;
+    }
+
+        .hoso-contentl ul {
+            list-style-type: none;
+            padding: 0px;
+            font-size: 18px;
+        }
+
+            .hoso-contentl ul li {
+                padding: 10px 16px 10px 24px;
+                border-radius: 0 20px 20px 0;
+            }
+
+                .hoso-contentl ul li a {
+                    border-radius: 0 20px 20px 0;
+                    width: 340px !important;
+                }
+
+                    .hoso-contentl ul li a:hover {
+                        background-color: #f79879;
+                        border-color: #f68b68;
+                        color: white;
+                    }
+
+    .hoso-contentr, .phieukham-content, .thongbao-content {
+        padding-left: 50px;
+        width: 800px;
+    }
+
+        .hoso-contentr ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .hoso-contentr b, .phieukham-content b, .thongbao-content b {
+            font-size: 20px;
+        }
+
+    .hoso-contentrkodata, .phieukham-contentrkodata, .thongbao-contentrkodata {
+        margin-top: 30px;
+        font-size: 16px;
+        display: none;
+    }
+
+    .hoso-contentrlist {
+        font-size: 20px;
+        width: 100%;
+        border: 1px solid rgb(223, 227, 235);
+        margin-top: 30px;
+        padding: 15px 20px 25px 20px;
+    }
+
+    .hoso-contentritem1 {
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 10px 0 4px 0;
+    }
+
+        .hoso-contentritem1 div {
+            color: #06A3DA;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .hoso-contentritem1 button {
+            border: none;
+            background-color: white;
+            margin-right: 20px;
+            padding: 8px 12px 8px 12px;
+            color: #06A3DA;
+            box-sizing: border-box;
+            position: relative;
+            width: 110px;
+        }
+
+            .hoso-contentritem1 button::before, .hoso-contentritem1 button::after {
+                content: '';
+                box-sizing: border-box;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                transform-origin: center;
+            }
+
+            .hoso-contentritem1 button::before {
+                border-top: 0.2em solid #06A3DA;
+                border-bottom: 0.2em solid #06A3DA;
+                transform: scale3d(0, 1, 1);
+            }
+
+            .hoso-contentritem1 button::after {
+                border-left: 0.2em solid #06A3DA;
+                border-right: 0.2em solid #06A3DA;
+                transform: scale3d(1, 0, 1);
+            }
+
+            .hoso-contentritem1 button:hover::before, .hoso-contentritem1 button:hover::after {
+                transform: scale3d(1, 1, 1);
+                transition: transform 900ms;
+            }
+
+    .hoso-contentrlist svg {
+        position: relative;
+        top: 2px;
+        margin-right: 5px;
+    }
+
+    .hoso-contentritem1 button a {
+        color: #06A3DA;
+    }
+
+        .hoso-contentritem1 button a:hover {
+            text-decoration: none;
+        }
+
+    .chonhs-contentritem2 i, .chonhs-contentritem2 svg {
+        height: 18px;
+        width: 18px;
+        margin-right: 5px;
+        position: relative;
+        top: -1px;
+    }
+
+    .chonhs-contentritem2 {
+        display: flex;
+        flex-direction: row;
+        font-size: 18px;
+        width: 100%;
+        padding: 10px 0 10px 0;
+    }
+
+        .chonhs-contentritem2 div {
+            min-width: 150px;
+        }
+
+    .chonhs-contentritem3 {
+        border-top: 1px solid #06A3DA;
+        margin-top: 10px;
+        padding-top: 14px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+    }
+
+        .chonhs-contentritem3 a {
+            width: 120px;
+            color: white;
+            background-color: #3699ff;
+            text-decoration: none;
+            text-align: center;
+            height: 28px;
+            padding: 5px;
+            transition-duration: .3s;
+            transition-property: transform;
+            transition-timing-function: ease-out;
+        }
+
+            .chonhs-contentritem3 a:hover {
+                cursor: pointer;
+                background-color: #608FF0;
+            }
+
+        .chonhs-contentritem3 button {
+            width: 120px;
+            padding: 5px 0 5px 0;
+            text-align: center;
+            margin-right: 7px;
+            border: none;
+            background-color: white;
+        }
+
+            .chonhs-contentritem3 button:nth-child(1) {
+                color: #fd397a;
+            }
+
+                .chonhs-contentritem3 button:nth-child(1):hover {
+                    background-color: #fd397a;
+                    color: white;
+                }
+
+            .chonhs-contentritem3 button:nth-child(2) {
+                color: #3699ff;
+            }
+
+                .chonhs-contentritem3 button:nth-child(2):hover {
+                    background-color: #3699ff;
+                    color: white;
+                }
+
+    .hoso-contentritem3 {
+        border-top: 1px solid rgb(223, 227, 235);
+        margin-top: 10px;
+        padding-top: 14px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        font-size: 16px;
+    }
+
+        .hoso-contentritem3 button {
+            width: 120px;
+            padding: 5px 0 5px 0;
+            text-align: center;
+            margin-right: 7px;
+            border: none;
+            background-color: white;
+        }
+
+            .hoso-contentritem3 button:nth-child(1) {
+                color: #fd397a;
+            }
+
+                .hoso-contentritem3 button:nth-child(1):hover {
+                    background-color: #fd397a;
+                    color: white;
+                }
+
+            .hoso-contentritem3 button:nth-child(2) {
+                color: #3699ff;
+            }
+
+                .hoso-contentritem3 button:nth-child(2):hover {
+                    background-color: #3699ff;
+                    color: white;
+                }
+
+    i {
+        margin-right: 5px;
+    }
+</style>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Thông tin cá nhân</h1>
+            <a href="/Client/Home" class="h4 text-white">Trang chủ</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="/Client/Profile/Profile" class="h4 text-white">Thông tin cá nhân</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="#" class="h4 text-white">Thông tin hồ sơ</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="hoso-content">
+        <div class="hoso-contentl">
+            <a class="btn btn-primary py-2 px-4 ms-3" href="/Client/Profile/Profilerecordadd" style="margin-bottom:15px; font-size:20px;">
+                <i class="bi bi-person-check-fill"></i> Thêm hồ sơ bệnh nhân
+            </a>
+            <ul>
+                <li>
+                    <a class="btn btn-secondary py-2 px-4 ms-3" href="/Client/Profile/Profile"><i class="bi bi-person-lines-fill"></i> Hồ sơ bệnh nhân</a>
+                </li>
+                <li>
+                    <a class="btn  py-2 px-4 ms-3"><i class="bi bi-file-earmark-plus-fill"></i> Phiếu khám bệnh</a>
+                </li>
+                <li>
+                    <a class="btn  py-2 px-4 ms-3"><i class="bi bi-align-start"></i> Lịch sử khám bệnh</a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="hoso-contentr">
+            <p>PATIENT'S RECORDS</p>
+            <b>Thông tin hồ sơ bệnh nhân</b>
+            @if (Model == null)
+            {
+                <div>Hồ sơ không tồn tại hoặc lỗi hệ thống</div>
+            }
+            else
+            {
+                <ul>
+                    <li class="hoso-contentrlist">
+                        <ul>
+                            <li class="hoso-contentritem1">
+                                <div>
+                                    <i class="bi bi-person-circle"></i>     @Model.HoTen
+                                </div>
+                            </li>
+                            <li class="chonhs-contentritem2">
+                                <div>
+                                    <i class="bi bi-calendar"></i> Ngày sinh
+                                </div>
+                                <span>@Model.NgaySinh</span>
+                            </li>
+                            <li class="chonhs-contentritem2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                        <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
+                                        <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                    </svg> Điện thoại
+                                </div>
+                                <span>@Model.Sdt</span>
+                            </li>
+                            <li class="chonhs-contentritem2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gender-ambiguous" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M11.5 1a.5.5 0 0 1 0-1h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V1.707l-3.45 3.45A4 4 0 0 1 8.5 10.97V13H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V14H6a.5.5 0 0 1 0-1h1.5v-2.03a4 4 0 1 1 3.471-6.648L14.293 1H11.5zm-.997 4.346a3 3 0 1 0-5.006 3.309 3 3 0 0 0 5.006-3.31z" />
+                                    </svg> Giới tính
+                                </div>
+                                <span>@Model.GioiTinh</span>
+                            </li>
+                            <li class="chonhs-contentritem2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at" viewBox="0 0 16 16">
+                                        <path d="M2 2a2 2 0 0 0-2 2v8.01A2 2 0 0 0 2 14h5.5a.5.5 0 0 0 0-1H2a1 1 0 0 1-.966-.741l5.64-3.471L8 9.583l7-4.2V8.5a.5.5 0 0 0 1 0V4a2 2 0 0 0-2-2H2Zm3.708 6.208L1 11.105V5.383l4.708 2.825ZM1 4.217V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v.217l-7 4.2-7-4.2Z" />
+                                        <path d="M14.247 14.269c1.01 0 1.587-.857 1.587-2.025v-.21C15.834 10.43 14.64 9 12.52 9h-.035C10.42 9 9 10.36 9 12.432v.214C9 14.82 10.438 16 12.358 16h.044c.594 0 1.018-.074 1.237-.175v-.73c-.245.11-.673.18-1.18.18h-.044c-1.334 0-2.571-.788-2.571-2.655v-.157c0-1.657 1.058-2.724 2.64-2.724h.04c1.535 0 2.484 1.05 2.484 2.326v.118c0 .975-.324 1.39-.639 1.39-.232 0-.41-.148-.41-.42v-2.19h-.906v.569h-.03c-.084-.298-.368-.63-.954-.63-.778 0-1.259.555-1.259 1.4v.528c0 .892.49 1.434 1.26 1.434.471 0 .896-.227 1.014-.643h.043c.118.42.617.648 1.12.648Zm-2.453-1.588v-.227c0-.546.227-.791.573-.791.297 0 .572.192.572.708v.367c0 .573-.253.744-.564.744-.354 0-.581-.215-.581-.8Z" />
+                                    </svg> Địa chỉ Email
+                                </div>
+                                <span>@Model.Email</span>
+                            </li>
+                            <li class="chonhs-contentritem2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                                    </svg> Dân tộc
+                                </div>
+                                <span>@Model.DanToc</span>
+                            </li>
+                            <li class="chonhs-contentritem2">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-signpost" viewBox="0 0 16 16">
+                                        <path d="M7 1.414V4H2a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h5v6h2v-6h3.532a1 1 0 0 0 .768-.36l1.933-2.32a.5.5 0 0 0 0-.64L13.3 4.36a1 1 0 0 0-.768-.36H9V1.414a1 1 0 0 0-2 0zM12.532 5l1.666 2-1.666 2H2V5h10.532z" />
+                                    </svg> Địa chỉ
+                                </div>
+                                <span>@Model.DiaChi</span>
+                            </li>
+                            <li class="hoso-contentritem3">
+                                <button onclick="window.location.href = '/Profile/Profile';">
+                                    Quay lại
+                                </button>
+                                <button onclick="window.location.href = '/Profile/Profilerecordedit/@Model.MaHS';">
+                                    <i class="bi bi-pencil-square"></i> Sửa hồ sơ
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+

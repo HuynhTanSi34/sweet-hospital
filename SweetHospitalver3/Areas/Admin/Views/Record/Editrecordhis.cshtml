@@ -1,0 +1,165 @@
+﻿@model SweetHospitalver3.Models.KETQUA
+
+@{
+    ViewBag.Title = "Sửa kết quả khám bệnh";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    SweetHospitalver3.Models.HospitalDbContext db = new SweetHospitalver3.Models.HospitalDbContext();
+}
+<style>
+    .reupsubmit {
+        margin: 30px 0 10px 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .m-21 {
+        margin: 8px 70px 8px 8px;
+    }
+
+    .editaccountfix {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        width: 700px !important;
+    }
+
+    .p-4 {
+        margin-bottom: 50px;
+        padding-right: 0 !important;
+    }
+
+    .col-xl-6 {
+        width: 80%;
+    }
+
+    .col-sm-2 {
+        width: 24%;
+    }
+
+    .col-sm-10 {
+        width: 70%;
+        padding-right: 0 !important;
+    }
+
+    .mb33 {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Sửa kết quả khám bệnh</h2>
+    <div class="col-sm-12 col-xl-6">
+        <div class="bg-light rounded h-100 p-4">
+            @using (Html.BeginForm("Editrecordhis", "Record", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "Cập nhật thất bại", new { @class = "alert alert-danger" })
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Mã phiếu</label>
+                    <div class="col-sm-10">
+                        @Model.MaPhieu
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Mã hồ sơ</label>
+                    <div class="col-sm-10">
+                        @Model.MaHS
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Họ và tên</label>
+                    <div class="col-sm-10">
+                        @Model.HOSO.HoTen
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Ngày sinh</label>
+                    <div class="col-sm-10">
+                        @Model.HOSO.NgaySinh.ToString("dd/MM/yyyy")
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Số điện thoại</label>
+                    <div class="col-sm-10">
+                        @Model.HOSO.Sdt
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Giới tính</label>
+                    <div class="col-sm-10">
+                        @Model.HOSO.GioiTinh
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Khoa</label>
+                    <div class="col-sm-10">
+                        <select class="form-select mb-3"
+                                aria-label="Default select example" name="Khoa">
+                            @foreach (var iu in db.DSKHOA)
+                            {
+                                <option value="@iu.Khoa" @(Model.Khoa == iu.Khoa ? "selected" : "")>@iu.Khoa</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Kết quả</label>
+                    <div class="col-sm-10">
+                        @Html.TextAreaFor(x => x.KetQua1, new { @class = "form-control", @id = "KetQua1", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Chuẩn đoán</label>
+                    <div class="col-sm-10">
+                        @Html.TextAreaFor(x => x.ChuanDoan, new { @class = "form-control", @id = "ChuanDoan" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Lời khuyên</label>
+                    <div class="col-sm-10">
+                        @Html.TextAreaFor(x => x.LoiKhuyen, new { @class = "form-control", @id = "LoiKhuyen" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Ngày khám</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.NgayKham, new { @class = "form-control", @id = "NgayKham", @type = "date" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Ngày tái khám (nếu có)</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.NgayTK, new { @class = "form-control", @id = "NgayTK", @type = "time" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Hình ảnh 1</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.Ha1, new { @class = "form-control", @id = "Ha1", @type = "file" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Hình ảnh 2</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.Ha2, new { @class = "form-control", @id = "Ha2", @type = "file" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Trạng thái</label>
+                    <div class="col-sm-10">
+                        <select class="form-select mb-3"
+                                aria-label="Default select example" name="TrangThai">
+                            <option value="Đã khám" @(Model.TrangThai == "Đã khám" ? "selected" : "")>Đã khám</option>
+                            <option value="Chưa khám" @(Model.TrangThai == "Chưa khám" ? "selected" : "")>Chưa khám</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="reupsubmit">
+                    <button type="button" class="btn btn-outline-secondary m-21" onclick="window.location.href='/Admin/Record/Record';">Hủy</button>
+                    <input type="submit" class="btn btn-outline-primary m-2" value="Lưu" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

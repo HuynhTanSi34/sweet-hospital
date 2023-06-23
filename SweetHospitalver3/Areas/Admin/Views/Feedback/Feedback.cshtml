@@ -1,0 +1,218 @@
+﻿@model PagedList.PagedList<SweetHospitalver3.Models.PHANHOI>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Hộp thư phản hồi";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<style>
+    .table-edit {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 0 2px 0 2px;
+        max-width: 60px;
+    }
+
+    .table-nameedit {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 230px;
+    }
+
+    .table-phoneedit {
+        width: 150px;
+    }
+
+    .table-emailedit {
+        max-width: 220px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .table-contentedit {
+        max-width: 250px !important;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .table-statusedit {
+        width: 150px;
+    }
+
+    .table-statusedit-circle {
+        height: 10px;
+        width: 10px;
+        background-color: #F2494C;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 2px;
+    }
+
+    .table-statusdone-circle {
+        height: 10px;
+        width: 10px;
+        background-color: #22FC00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 2px;
+    }
+
+    .feedback-title {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+        .feedback-title form {
+            max-width: 400px;
+            min-width: 200px;
+            width: 100%;
+            border: 1px solid #EBF2F7;
+            border-radius: 5px;
+        }
+
+    .table-editpencil:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #00B51B;
+    }
+
+    .table-editdelete:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #FC0004;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    tr:hover {
+        cursor: pointer;
+    }
+
+    .pagination {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+    }
+
+        .pagination li {
+            padding: 10px;
+            display: inline-block;
+            margin: 0 3px;
+            cursor: pointer;
+            color: #009CFF;
+            border-color: #009CFF;
+            font-size: 15px;
+        }
+
+    li.active {
+        background-color: #FFFFFF;
+        border: 1px solid #009CFF;
+    }
+
+    .pagination li:hover {
+        background-color: #FFFFFF;
+        border: 1px solid #009CFF;
+    }
+
+    .account-search {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .account-search2 {
+        height: 40px !important;
+        margin-left: 80px;
+        border: 1px solid #EBF2F7 !important;
+        border-radius: 5px;
+        width: 30%;
+    }
+
+    .account-search3 {
+        width: 20% !important;
+        height: 40px !important;
+    }
+
+    .mb-3 {
+        width: 20%;
+    }
+
+    a {
+        margin: 0 3px 0 3px;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <div class="feedback-title">
+        <h2>Hộp thư phản hồi</h2>
+
+    </div>
+    @using (Html.BeginForm("Feedback", "Feedback", FormMethod.Get))
+    {
+        <div class="account-search">
+            <div class="form-floating mb-3">
+                <select class="form-select"
+                        id="floatingSelect"
+                        aria-label="Floating label select example" name="searchTrangthai">
+                    <option value="">Tất cả</option>
+                    <option value="Đã trả lời">Đã trả lời</option>
+                    <option value="Chưa trả lời">Chưa trả lời</option>
+                </select>
+                <label for="floatingSelect">Trạng thái</label>
+            </div>
+            <input class="form-control border-0 account-search2" type="search" placeholder="Search" name="searchString" value="@ViewBag.SearchString">
+            <input type="submit" class="btn btn-outline-primary m-2" value="Tìm kiếm" />
+
+        </div>
+    }
+    <div class="col-12">
+        <div class="bg-light rounded h-100 p-4">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="max-width:35px;">#</th>
+                            <th scope="col">Họ và Tên</th>
+                            <th scope="col">Số điện thoại</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Nội dung</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col" style="max-width: 54px;"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var items in Model)
+                        {
+                            <tr class="table__row" id="row_@items.Id">
+                                <td style="width:35px;">@items.Id</td>
+                                <td class="table-nameedit">@items.HoTen</td>
+                                <td class="table-phoneedit">@items.Sdt</td>
+                                <td class="table-emailedit">@items.Email</td>
+                                <td class="table-contentedit">@items.NoiDung</td>
+                                <td class="table-statusedit"><div class="@(@items.TrangThai == "Chưa trả lời" ? "table-statusedit-circle" :"table-statusdone-circle")"></div> @items.TrangThai</td>
+                                <td>
+                                    <div class="table-edit">
+                                        <a href="/Admin/Feedback/Editfb/@items.Id" class="table-editpencil">Sửa</a> |
+                                        @Ajax.ActionLink("Xóa", "Delete", new { @id = items.Id }, new AjaxOptions { Confirm = "Bạn có muốn xóa hàng này?", OnComplete = "$('#row_" + @items.Id + "').remove()", HttpMethod = "Delete" }, new { @class = "table-editdelete" })
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model, page => Url.Action("Feedback", new { page, @searchString = @ViewBag.SearchString }))
+            </div>
+        </div>
+    </div>
+</div>

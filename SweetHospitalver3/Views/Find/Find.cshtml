@@ -1,0 +1,178 @@
+﻿@model PagedList.PagedList<SweetHospitalver3.Models.THOIGIANBS>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Find";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    SweetHospitalver3.Models.HospitalDbContext bb = new SweetHospitalver3.Models.HospitalDbContext();
+    SweetHospitalver3.Models.DropdownDbb db = new SweetHospitalver3.Models.DropdownDbb();
+}
+<style>
+    section {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .account-search {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .account-search2 {
+        height: 40px !important;
+        margin-left: 80px;
+        border: 1px solid #EBF2F7 !important;
+        border-radius: 5px;
+        width: 30%;
+    }
+
+    .account-search3 {
+        width: 20% !important;
+        height: 40px !important;
+    }
+
+    .account-add1:hover {
+        transform: translateY(-5px);
+    }
+
+    tr:hover {
+        cursor: pointer;
+    }
+
+    .table-statusedit-circlegreen {
+        height: 10px;
+        width: 10px;
+        background-color: #22FC00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-statusedit-circlered {
+        height: 10px;
+        width: 10px;
+        background-color: #FC0004;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-statusedit-circleyellow {
+        height: 10px;
+        width: 10px;
+        background-color: #FCDB00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .an {
+        display: none;
+    }
+
+    .hien {
+        display: block;
+    }
+
+    tr {
+        align-items: center;
+    }
+
+    .ms-3 {
+        margin-bottom: 25px;
+        font-size: 20px;
+    }
+
+        .ms-3:hover {
+            transform: translateY(-8px);
+        }
+</style>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Lịch hẹn Bác sĩ</h1>
+            <a href="/Home" class="h4 text-white">Trang chủ</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="#" class="h4 text-white">Lịch hẹn Bác sĩ</a>
+        </div>
+    </div>
+</div>
+<section>
+    <div class="container-fluid pt-4 px-4">
+        <a href="/Appointment/Appointment" class="btn btn-primary py-2 px-4 ms-3">Đặt lịch khám</a>
+        @using (Html.BeginForm("Find", "Find", FormMethod.Get))
+        {
+            <div class="account-search">
+                <div class="form-floating mb-3">
+                    <select class="form-select"
+                            id="floatingSelect"
+                            aria-label="Floating label select example" name="searchKhoa">
+                        <option selected>Tất cả</option>
+                        @foreach (var dskhoa in bb.DSKHOA.ToList())
+                        {
+                            <option value="@dskhoa.Khoa">@dskhoa.Khoa</option>
+                        }
+                    </select>
+                    <label for="floatingSelect">Khoa</label>
+                </div>
+                <div class="form-floating mb-3" style="width:12%;">
+                    <select class="form-select"
+                            id="floatingSelect"
+                            aria-label="Floating label select example" name="searchTrangthai">
+                        <option selected>Tất cả</option>
+                        @foreach (var dskhoa in db.TRANGTHAITHU.ToList())
+                        {
+                            <option value="@dskhoa.Valu">@dskhoa.TangThai</option>
+                        }
+                    </select>
+                    <label for="floatingSelect">Trạng thái</label>
+                </div>
+                <input class="form-control border-0 account-search2" type="search" placeholder="Search" name="searchString">
+                <input type="submit" class="btn btn-outline-primary m-2" value="Tìm kiếm" />
+            </div>
+        }
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Mã Bác sĩ</th>
+                                <th scope="col">Họ tên BS</th>
+                                <th scope="col">Khoa</th>
+                                <th scope="col">Ngày </th>
+                                <th scope="col">Giờ</th>
+                                <th scope="col">Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var items in Model.Where(x => x.Ngay >= DateTime.Today))
+                            {
+                                <tr id="row_@items.MaDK">
+                                    <td>@items.MaBS</td>
+                                    <td>@items.BACSI.HoTen</td>
+                                    <td>@items.BACSI.Khoa</td>
+                                    <td>@items.Ngay.ToString("dd/MM/yyyy")</td>
+                                    <td>@items.Gio</td>
+                                    <td><div class="@(@items.TrangThai == "Đã đặt" ? "table-statusedit-circlegreen" :"") @(@items.TrangThai == "Đã hủy lịch" ? "table-statusedit-circlered" :"") @(@items.TrangThai == "Chưa đặt lịch" ? "table-statusedit-circleyellow" :"")"></div> @items.TrangThai</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Find", new { page, @searchString = @ViewBag.SearchString }))
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

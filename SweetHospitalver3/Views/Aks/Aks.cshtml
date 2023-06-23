@@ -1,0 +1,1272 @@
+﻿
+@{
+    ViewBag.Title = "Aks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .asks-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        padding-top: 30px;
+        font-size: 17px;
+    }
+
+    .asks-content-title {
+        display: flex;
+        flex-direction: column;
+        margin-right: 30px;
+    }
+
+        .asks-content-title ul {
+            list-style-type: none;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+            padding-left: 0 !important;
+        }
+
+            .asks-content-title ul li {
+                padding: 10px 10px 10px 25px;
+                color: black;
+            }
+
+                .asks-content-title ul li:hover {
+                    background-color: #F57E57;
+                    cursor: pointer;
+                }
+
+    .activefake {
+        background-color: #F57E57;
+    }
+
+    .asks-content-title button {
+        border: none;
+        background: inherit;
+    }
+
+    .asks-content-titleactive {
+        color: blue;
+    }
+
+    .asks-content-title1 {
+        padding: 10px 0px 10px 10px;
+        width: 280px;
+        background: #06A3DA;
+        color: #fff;
+    }
+
+    .an {
+        display: none;
+    }
+
+    .hien {
+        display: block;
+    }
+
+    .asks-content-ans {
+        width: 810px;
+    }
+
+    .asks-content-ansitem {
+        margin-bottom: 20px;
+        background: #CCDFE6;
+        padding: 10px 0px 10px 10px;
+    }
+
+    .asks-content-ansitemv11 {
+        padding: 15px 15px 15px 15px;
+        margin-top: -20px;
+        margin-bottom: 20px;
+        border: 1px solid #91B4CF;
+        transform: translateY(0);
+    }
+</style>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Giải đáp thắc mắc chung</h1>
+            <a href="/Home" class="h4 text-white">Trang chủ</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="#" class="h4 text-white">Thắc mắc</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="asks-content">
+            <div class="asks-content-title">
+                <div class="asks-content-title1">
+                    Giải đáp nhanh câu hỏi
+                </div>
+                <ul>
+                    <li id="i1" class="activefake" onclick="v1()">
+                        Vấn đề chung
+                    </li>
+                    <li id="i2" onclick="v2()" class="nnnn">
+                        Vấn đề về tài khoản
+                    </li>
+                    <li id="i3" onclick="v3()" class="nnnn">
+                        Vấn đề về quy trình đặt khám
+                    </li>
+                    <li id="i4" onclick="v4()" class="nnnn">
+                        Vấn đề về thanh toán
+                    </li>
+                </ul>
+            </div>
+            <div class="asks-content-ans">
+                <div id="vandechung">
+                    <div class="asks-content-ansitem" onclick="v11()">
+                        Đối tượng bệnh nhân nào có thể sử dụng phần mềm để đăng ký khám bệnh?
+                    </div>
+                    <div class="an" id="v11">
+                        <p>Tất cả người bệnh đều có thể sử dụng phần mềm để đăng ký khám bệnh.</p>
+                        <p>Tuy nhiên, phần mềm chỉ phù hợp cho những người bệnh có kế hoạch khám chữa bệnh chủ động, hoặc tình trạng bệnh KHÔNG khẩn cấp.</p>
+                        <p>Trong trường hợp CẤP CỨU, người nhà nên đưa người bệnh đến cơ sở y tế gần nhất hoặc gọi số cấp cứu 115 để được hỗ trợ.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v12()">
+                        Đăng ký khám qua phần mềm có tốn phí không?
+                    </div>
+                    <div class="an" id="v12">
+                        <p>Có!</p>
+                        <p>Hiện tại, khi đăng ký khám bệnh qua phần mềm, ngoài tiền khám bạn phải trả thêm phí tiện ích.</p>
+
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v13()">
+                        Các loại tiền và phí khi sử dụng phần mềm để đăng ký khám bệnh?
+                    </div>
+                    <div class="an" id="v13">
+                        <ul>
+                            <li>Tiền khám: là số tiền bạn trả cho việc sử dụng dịch vụ khám chữa bệnh của bệnh viện, số tiền này được thu theo qui định của bệnh viện.</li>
+                            <li>Phí tiện ích: là số tiền bạn trả để hỗ trợ cho việc sử dụng dịch vụ đăng ký khám bệnh trực tuyến của phần mềm.</li>
+                        </ul>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v14()">
+                        Tôi có thể bị bệnh viện từ chối khám bệnh, sau khi đã đăng ký khám qua phần mềm không?
+                    </div>
+                    <div class="an" id="v14">
+                        <p>Có!</p>
+                        <p>Trong trường hợp thông tin thực tế của bạn không trùng khớp với thông tin bệnh nhân in trên phiếu khám bệnh, hoặc bạn thực hiện việc khám chữa bệnh không đúng với thông tin khám trên phiếu khám bệnh.</p>
+
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v15()">
+                        Những lí do nào tôi có thể bị bệnh viện từ chối tiếp nhận khám chữa bệnh?
+                    </div>
+                    <div class="an" id="v15">
+                        <p>Bạn có thể bị bệnh viện từ chối tiếp nhận khám chữa bệnh với những lí do sau:</p>
+                        <ul>
+                            <li>
+                                Thông tin thực tế của bạn không trùng khớp với thông tin bệnh nhân in trên phiếu khám bệnh:
+                                <ul>
+                                    <li>Họ tên</li>
+                                    <li>Năm sinh</li>
+                                    <li>Giới tính</li>
+                                    <li>Số chứng minh nhân dân hoặc giấy tờ tùy thân...</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Bạn thực hiện việc khám chữa bệnh không đúng với thông tin khám trên phiếu khám bệnh:
+                                <ul>
+                                    <li>Không đúng ngày khám</li>
+                                    <li>Không đúng chuyên khoa</li>
+                                    <li>Không đúng phòng khám</li>
+                                    <li>Chưa đến số thứ tự….</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v16()">
+                        Tôi có thể dùng phần mềm để đăng ký và lấy số thứ tự khám, sau đó bán lại cho Bệnh nhân không?
+                    </div>
+                    <div class="an" id="v16">
+                        <p>Không!</p>
+                        <p>Các dịch vụ của phần mềm được xây dựng để phục vụ cho nhu cầu đăng ký khám bệnh của người bệnh, vì mục đích sử dụng cá nhân.</p>
+                        <p>Tất cả các hành vi sử dụng dịch vụ của phần mềm vì mục đích thương mại, cho dù dưới bất kỳ hình thức nào, cũng đều không được phép, bị cấm và sẽ chịu hoàn toàn trách nhiệm trước pháp luật.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v17()">
+                        Tôi có lợi gì khi đăng ký khám bệnh qua phần mềm?
+                    </div>
+                    <div class="an" id="v17">
+                        <p>Khi đăng ký khám bệnh trên phần mềm, bạn có thể:</p>
+                        <ul>
+                            <li>Đăng ký trước ngày khám từ 01 đến 30 ngày.</li>
+                            <li>Chủ động lựa chọn các thông tin khám: bác sĩ khám, ngày khám, chuyên khoa, phòng khám, giờ khám...</li>
+                            <li>Thanh toán và nhận phiếu khám bệnh trực tuyến.</li>
+                            <li>Tạo, cập nhật hồ sơ và quản lý các phiếu khám bệnh dễ dàng.</li>
+                            <li>Được thông báo nhắc tái khám, làm tăng khả năng tuân thủ điều trị.</li>
+                        </ul>
+                        <p>Và quan trọng nhất là bạn thực hiện được tất cả các tính năng trên hoàn toàn trực tuyến ở mọi lúc mọi nơi, mà không cần phải đến bệnh viện để xếp hàng và chờ đợi.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v18()">
+                        Tôi đến bệnh viện trễ hơn so với giờ khám đã đăng ký, vậy tôi có được khám hay không?
+                    </div>
+                    <div class="an" id="v18">
+                        <p>Được!</p>
+                        <p>Phiếu Khám Bệnh có giá trị sử dụng từ 6h30 – 16h30 của ngày khám.</p>
+                        <p>Nếu bạn đến trễ hơn so với giờ khám dự kiến đã đăng ký, nhưng phiếu khám bệnh vẫn còn giá trị sử dụng, thì bạn vẫn được khám.</p>
+                        <p>Tuy nhiên, trong trường hợp này bạn vui lòng liên hệ và nghe theo sự hướng dẫn của nhân viên bệnh viện.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v19()">
+                        Phần mềm có hỗ trợ đăng ký khám 24/7 không?
+                    </div>
+                    <div class="an" id="v19">
+                        <p>Có!</p>
+                        <p>Phần mềm cho phép bạn thực hiện việc đăng ký khám vào bất kỳ thời điểm nào trong ngày và bất cứ ngày nào trong tuần, đảm bảo bạn có thể sử dụng Phần mềm để đăng ký khám bệnh mọi lúc mọi nơi, mà không cần phải đến trực tiếp bệnh viện để thực hiện.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v112()">
+                        Tại sao sau khi đăng ký khám thành công tôi không nhận được phiếu khám bệnh gửi qua email?
+                    </div>
+                    <div class="an" id="v112">
+                        <p>Nếu hồ sơ bệnh nhân của bạn có địa chỉ email chính xác, thì sau khi đăng ký khám bệnh thành công, ngay lập tức phần mềm sẽ gửi phiếu khám bệnh đến địa chỉ email của bạn.</p>
+                        <p>Bạn vui lòng kiểm tra hộp thư đến hoặc Spam để tìm thấy email phiếu khám bệnh của mình.</p>
+                        <p>Trường hợp đã kiểm tra kỹ nhưng vẫn không thấy email gửi phiếu khám bệnh, vui lòng liên hệ tổng đài 19002115 chúng tôi sẽ hỗ trợ bạn.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v113()">
+                        Sau khi đã đăng ký khám thành công qua phần mềm, có thể hủy phiếu khám không?
+                    </div>
+                    <div class="an" id="v113">
+                        <p>Bạn có thể chủ động hủy phiếu khám đã đặt thành công, nếu kế hoạch khám chữa bệnh cá nhân có thay đổi.</p>
+                        <p>Hoặc trong 1 số trường hợp, bệnh viện có quyền từ chối phiếu khám nếu có sự sai lệch thông tin bệnh nhân, sai thông tin phiếu khám, hoặc có vấn đề bất khả kháng phát sinh từ phía bệnh viện.</p>
+                        <p>Bạn đều sẽ được hoàn tiền lại nếu chưa thực sự đặt khám và khám thành công (nhưng phải tuân theo quy định của phần mềm và bệnh viện).</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v114()">
+                        Bác sĩ có hẹn lịch tái khám, nhưng vào phần mềm đăng ký không có, tôi phải làm sao để đăng ký tái khám?
+                    </div>
+                    <div class="an" id="v114">
+                        <p>Lịch hẹn tái khám sẽ được cập nhật trên phần mềm mỗi 60 phút / lần</p>
+                        <p>Hoặc bệnh nhân có thể sử dụng tính năng đặt khám ngay và chọn thông tin khám (Bác sĩ, ngày khám, giờ khám…) theo thông tin tái khám được hẹn.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v115()">
+                        Tôi có lịch hẹn tái khám của bác sĩ Lê Minh nhưng không đặt được ?
+                    </div>
+                    <div class="an" id="v115">
+                        <p>Vì lịch khám của bác sĩ Lê Minh luôn kín trước 3 tháng. Nhưng phần mềm chỉ cho đăng ký trước 30 ngày, nên hiện tại phần mềm chưa hỗ trợ đặt khám cho bác sĩ Lê Minh.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v116()">
+                        Tôi đăng ký mà báo là quý khách chưa đăng ký dịch vụ hoặc dịch vụ không hoạt động ?
+                    </div>
+                    <div class="an" id="v116">
+                        <p>Vui lòng liên hệ trực tiếp tổng đài 19002115.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v117()">
+                        Tôi bị bệnh A, B, C… tôi phải đăng ký khoa nào?
+                    </div>
+                    <div class="an" id="v117">
+                        <p>Vui lòng điện thoại tổng đài bệnh viện 19002115 để được tư vấn chọn chuyên khoa.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v118()">
+                        Tôi đăng ký trước nhưng mai tôi bận không đến khám được tôi muốn hủy phiếu làm sao?
+                    </div>
+                    <div class="an" id="v118">
+                        <ul>
+                            <li>Bạn vui lòng thực hiện việc hủy phiếu khám đã đặt trước 16h30 của ngày trước ngày khám để nhận lại tiền hoàn. Thao tác hủy phiếu khám cụ thể như sau:</li>
+                            <li>Đăng nhập website datkham.medpro.com.vn > chọn thông tin tài khoản > chọn quản lý phiếu khám bệnh > chọn phiếu khám bệnh muốn hủy > bấm hủy phiếu</li>
+                        </ul>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v119()">
+                        Tôi nhập thông tin cho người nhà có nhập số CMND đã bấm lưu nhưng mở lại không có?
+                    </div>
+                    <div class="an" id="v119">
+                        <p>Thông tin bạn vừa update trên phần mềm, sau 24h mới được cập nhật trên hệ thống. Vui lòng kiểm tra thông tin sau 24h.</p>
+                    </div>
+                </div>
+                <div id="vandetaikhoan">
+                    <div class="asks-content-ansitem" onclick="v21()">
+                        “Mã Số Bệnh Nhân” là gì? Làm sao tôi có thể biết được mã số bệnh nhân của mình?
+                    </div>
+                    <div class="an" id="v21">
+                        <p>Mã số bệnh nhân là số hồ sơ mà bệnh viện dùng để quản lý thông tin của bạn trên hệ thống dữ liệu của bệnh viện.</p>
+                        <p>Để biết được mã số bệnh nhân của mình, bạn có thể tham khảo gợi ý về cách tìm mã số bệnh nhân, và tìm thấy trong các loại giấy tờ như: toa thuốc, phiếu chỉ định cận lâm sàng, các biên lai thu tiền…</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v22()">
+                        Tôi quên Mã Số Bệnh Nhân của mình, phải làm sao?
+                    </div>
+                    <div class="an" id="v22">
+                        <p>Để tìm lại mã số bệnh nhân, bạn có thể:</p>
+                        <ul>
+                            <li>Xem qua gợi ý về cách tìm lại mã số bệnh nhân, và tìm lại trong các loại giấy tờ khám chữa bệnh của mình.</li>
+                            <li>Hoặc mở tính năng "Tôi quên mã số bệnh nhân" > nhập chính xác các thông tin yêu cầu > bấm "Xác nhận" > và chọn hồ sơ của mình trong danh sách kết quả.</li>
+                        </ul>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v23()">
+                        Làm sao tôi biết mình đã có Mã Số Bệnh Nhân chưa?
+                    </div>
+                    <div class="an" id="v23">
+                        <p>Nếu bạn đã từng thực hiện việc khám chữa bệnh tại bệnh viện, đồng nghĩa với việc bạn đã có “mã số bệnh nhân” trên hệ thống của bệnh viện.</p>
+                        <p>Khi đó, hãy tìm lại mã số bệnh nhân của bạn trong các loại giấy tờ khám chữa bệnh, hoặc bạn có thể sử dụng tính năng “Tôi quên mã số bệnh nhân” để tìm lại mã số bệnh nhân của mình ngay trên phần mềm.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v24()">
+                        Làm sao tôi biết mình đã có Mã Số Bệnh Nhân chưa?
+                    </div>
+                    <div class="an" id="v24">
+                        <p>Không!</p>
+                        <p>Trong trường hợp bạn cố tình hay nhầm lẫn dùng hồ sơ bệnh nhân của người khác để đăng ký khám bệnh cho mình, là đã vi phạm điều khoản sử dụng của phần mềm. Khi đó, bạn sẽ bị bệnh viện từ chối khám chữa bệnh, chịu hoàn toàn những thiệt hại và tùy mức độ có thể chịu trách nhiệm trước pháp luật.</p>
+                        <p>Vì vậy, khi đăng ký khám bệnh bạn vui lòng chọn/nhập và kiểm tra chính xác hồ sơ bệnh nhân của mình!</p>
+                    </div>
+                </div>
+                <div id="vandequytrinh">
+                    <div class="asks-content-ansitem" onclick="v31()">
+                        Nếu BHYT của tôi bị từ chối, tôi phải làm sao?
+                    </div>
+                    <div class="an" id="v31">
+                        <p>Trường hợp bạn chọn đối tượng là BHYT khi đăng ký khám, nhưng khi xác minh BHYT bạn không thuộc đối tượng này, khi đó bạn có thể:</p>
+                        <ul>
+                            <li>
+                                Thực hiện việc khám chữa bệnh theo thông tin trên Phiếu Khám Bệnh, nhưng dưới hình thức “Đối tượng không có BHYT”.
+                            </li>
+                            <li>Hoặc, bạn có thể hủy việc khám chữa bệnh, và vấn đề hoàn tiền trong trường hợp này sẽ do bệnh viện quyết định.</li>
+                        </ul>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v32()">
+                        Nếu BHYT của tôi bị từ chối, tôi phải làm sao?
+                    </div>
+                    <div class="an" id="v32">
+                        <p>Trường hợp bạn chọn đối tượng là BHYT khi đăng ký khám, nhưng khi xác minh BHYT bạn không thuộc đối tượng này, khi đó bạn có thể:</p>
+                        <ul>
+                            <li>
+                                Thực hiện việc khám chữa bệnh theo thông tin trên Phiếu Khám Bệnh, nhưng dưới hình thức “Đối tượng không có BHYT”.
+                            </li>
+                            <li>Hoặc, bạn có thể hủy việc khám chữa bệnh, và vấn đề hoàn tiền trong trường hợp này sẽ do bệnh viện quyết định.</li>
+                        </ul>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v33()">
+                        Phần mềm cho phép đăng ký khám bệnh trước bao lâu?
+                    </div>
+                    <div class="an" id="v33">
+                        <p>Hiện tại, bạn có thể sử dụng phần mềm để đăng ký trước ngày khám từ 01 đến 30 ngày.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v34()">
+                        Hủy đăng ký khám đã đặt qua phần mềm, phải làm sao?
+                    </div>
+                    <div class="an" id="v34">
+                        <p>Để hủy phiếu khám bệnh đã đăng ký, bạn vui lòng:</p>
+                        <ul>
+                            <li>
+                                Thực hiện việc hủy phiếu khám bệnh trước 16h30 của ngày trước ngày khám.
+                            </li>
+                            <li>Và thao tác theo trình tự: Đăng nhập phần mềm > Thông tin tài khoản > Quản lý phiếu khám bệnh > Chọn phiếu khám bệnh muốn hủy > Chọn hủy phiếu khám bệnh > Xác nhận hủy.</li>
+                        </ul>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v35()">
+                        Tôi có thể thay đổi thông tin khám đã đặt qua phần mềm không?
+                    </div>
+                    <div class="an" id="v35">
+                        <p>Bạn không thể thay đổi thông tin khám trên phiếu khám bệnh đã đặt, trừ trường hợp lịch khám của bác sĩ bạn đăng ký thay đổi vào ngày khám trên phiếu. </p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v36()">
+                        Phần mềm có cho đăng ký khám bệnh với đối tượng bệnh nhân BHYT không?
+                    </div>
+                    <div class="an" id="v36">
+                        <p>Có!</p>
+                        <p>Tất cả các đối tượng bệnh nhân BHYT hoặc Không BHYT đều có thể sử dụng phần mềm để đăng ký khám bệnh.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v37()">
+                        Phần mềm có xác minh bảo hiểm y tế trực tuyến không?
+                    </div>
+                    <div class="an" id="v37">
+                        <p>Không!</p>
+                        <p>Phần mềm chỉ hỗ trợ bạn chọn đối tượng BHYT hoặc Không BHYT khi đăng ký khám, chứ không thực hiện việc xác minh BHYT.</p>
+                        <p>Để xác minh BHYT, khi đi khám bạn phải mang đầy đủ các loại giấy tờ cần thiết, đến các quầy tiếp nhận khu khám bệnh của bệnh viện để thực hiện, trước khi vào phòng khám gặp bác sĩ.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v38()">
+                        Nếu bác sĩ thay đổi lịch khám, tôi phải làm sao?
+                    </div>
+                    <div class="an" id="v38">
+                        <p>Khi bác sĩ thay đổi lịch khám, phần mềm sẽ gửi thông báo cho bạn qua tin nhắn sms, email và trên ứng dụng.</p>
+                        <p>Khi nhận được thông báo về sự thay đổi. Bạn có thể:</p>
+                        <ul>
+                            <li>
+                                Hủy Phiếu Khám Bệnh để nhận lại tiền khám theo quy định hoàn tiền.
+                            </li>
+                            <li>Vẫn giữ nguyên thông tin trên Phiếu Khám Bệnh, và điều này đồng nghĩa với việc bạn chấp nhận khám với bác sĩ thay thế mà bệnh viện đã sắp xếp.</li>
+                            <li>Thay đổi thông tin khám trên phiếu khám bệnh, bằng cách: Đăng nhập phần mềm > Thông Tin Tài Khoản > Quản lý phiếu khám bệnh > chọn vào phiếu khám bệnh bị thay đổi lịch khám > bấm "Chỉnh sửa".</li>
+                        </ul>
+                        <p>Việc thay đổi thông tin trên phiếu khám bệnh phải được thực hiện theo Quy định chỉnh sửa thông tin trên phiếu khám bệnh.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v39()">
+                        Tôi có thể dùng phần mềm đăng ký khám bệnh cho người thân được không?
+                    </div>
+                    <div class="an" id="v39">
+                        <p>Được!</p>
+                        <p>Bạn có thể dùng phần mềm để đăng ký khám bệnh cho người thân của mình. Nhưng phải đảm bảo nhập chính xác thông tin người thân của bạn trong phần thông tin bệnh nhân khi đăng ký.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v310()">
+                        Tại sao tôi phải cung cấp chứng minh nhân nhân hoặc giấy tờ tùy thân khi đăng ký khám bệnh qua phần mềm?
+                    </div>
+                    <div class="an" id="v310">
+                        <p>Khi đăng ký khám bệnh trên phần mềm, bạn phải cung cấp thông tin về chứng minh nhân dân hoặc giấy tờ tùy thân, để bệnh viện làm cơ sở đối chiếu đảm bảo xác nhận đúng người bệnh in trên phiếu khám bệnh, trước khi vào phòng khám gặp bác sĩ.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v311()">
+                        Tôi sẽ được khám bệnh vào đúng thời gian đã chọn, sau khi đăng ký khám qua phần mềm đúng không?
+                    </div>
+                    <div class="an" id="v311">
+                        <p>Có thể!</p>
+                        <p>Thời gian bạn chọn khi đăng ký khám, được xem là thời gian khám bệnh dự kiến.</p>
+                        <p>Do đặc thù của công tác khám chữa bệnh, chúng tôi không chắc chắn là bạn sẽ được khám vào đúng thời gian dự kiến đã chọn. Tuy nhiên, chúng tôi sẽ cố gắng cải thiện tốt nhất vấn đề này, giúp bạn có thể khám bệnh vào đúng thời gian dự kiến đã chọn.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v312()">
+                        Ngoài phiếu khám bệnh điện tử, tôi phải mang theo những giấy tờ gì khi đến bệnh viện để khám bệnh?
+                    </div>
+                    <div class="an" id="v312">
+                        <p>Khi đến bệnh viện để khám chữa bệnh, bạn phải mang theo đầy đủ:</p>
+                        <ul>
+                            <li>
+                                Phiếu Khám Bệnh điện tử
+                            </li>
+                            <li>Giấy tờ tùy thân (cmnd, hộ chiếu, ….)</li>
+                            <li>Các toa thuốc hoặc kết quả xét nghiệm gần nhất.</li>
+                            <li>Nếu là Đối Tượng BHYT: bạn phải mang theo các giấy tờ để xác minh BHYT (thẻ BHYT, giấy chuyển tuyến,…) </li>
+                        </ul>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v313()">
+                        Làm sao để tôi có thể tìm lại phiếu khám bệnh đã từng đăng ký?
+                    </div>
+                    <div class="an" id="v313">
+                        <p>Sau khi đăng ký khám bệnh thành công, phiếu khám bệnh sẽ được gửi đến bạn qua ba phương thức: tin nhắn SMS, hộp thư email, và ngay trên phần mềm.</p>
+                    </div>
+                    <div class="asks-content-ansitem" onclick="v314()">
+                        Đăng ký khám qua phần mềm thì khi nào tôi mới nhận được phiếu khám bệnh?
+                    </div>
+                    <div class="an" id="v314">
+                        <p>Sau khi thanh toán thành công, bạn sẽ nhận được phiếu khám bệnh ngay lập tức trên phần mềm và qua email (nếu hồ sơ bệnh nhân của bạn có thông tin chính xác về địa chỉ email).</p>
+                        <p>Ngoài ra, Phần mềm cũng hỗ trợ việc gửi thông tin phiếu khám bệnh qua tin nhắn SMS đến số điện thoại của bạn. Nhưng để sử dụng tính năng này bạn vui lòng bấm vào nút "Gửi Tin Nhắn SMS" > chọn số điện thoại > bấm "Xác Nhận". </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function v1() {
+        document.getElementById("vandechung").setAttribute("class", "hien");
+        document.getElementById("vandetaikhoan").setAttribute("class", "an");
+        document.getElementById("vandequytrinh").setAttribute("class", "an");
+        document.getElementById("vandethanhtoan").setAttribute("class", "an");
+        document.getElementById("i1").setAttribute("class", "activefake");
+        document.getElementById("i2").setAttribute("class", "bn");
+        document.getElementById("i3").setAttribute("class", "bn");
+        document.getElementById("i4").setAttribute("class", "bn");
+    }
+    function v2() {
+        document.getElementById("vandechung").setAttribute("class", "an");
+        document.getElementById("vandetaikhoan").setAttribute("class", "hien");
+        document.getElementById("vandequytrinh").setAttribute("class", "an");
+        document.getElementById("vandethanhtoan").setAttribute("class", "an");
+        document.getElementById("i2").setAttribute("class", "activefake");
+        document.getElementById("i1").setAttribute("class", "bn");
+        document.getElementById("i3").setAttribute("class", "bn");
+        document.getElementById("i4").setAttribute("class", "bn");
+    }
+    function v3() {
+        document.getElementById("vandechung").setAttribute("class", "an");
+        document.getElementById("vandetaikhoan").setAttribute("class", "an");
+        document.getElementById("vandequytrinh").setAttribute("class", "hien");
+        document.getElementById("vandethanhtoan").setAttribute("class", "an");
+    }
+    function v4() {
+        document.getElementById("vandechung").setAttribute("class", "an");
+        document.getElementById("vandetaikhoan").setAttribute("class", "an");
+        document.getElementById("vandequytrinh").setAttribute("class", "an");
+        document.getElementById("vandethanhtoan").setAttribute("class", "hien");
+    }
+    v1();
+    function v11() {
+        var boxe = document.getElementById("v11");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v12() {
+        var boxe = document.getElementById("v12");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v13() {
+        var boxe = document.getElementById("v13");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v14() {
+        var boxe = document.getElementById("v14");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v15() {
+        var boxe = document.getElementById("v15");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v16() {
+        var boxe = document.getElementById("v16");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v17() {
+        var boxe = document.getElementById("v17");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v18() {
+        var boxe = document.getElementById("v18");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v19() {
+        var boxe = document.getElementById("v19");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v112() {
+        var boxe = document.getElementById("v112");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v113() {
+        var boxe = document.getElementById("v113");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v114() {
+        var boxe = document.getElementById("v114");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v115() {
+        var boxe = document.getElementById("v115");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v116() {
+        var boxe = document.getElementById("v116");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v117() {
+        var boxe = document.getElementById("v117");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v118() {
+        var boxe = document.getElementById("v118");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+            document.getElementById("v119").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v119() {
+        var boxe = document.getElementById("v119");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v11").setAttribute("class", "an");
+            document.getElementById("v12").setAttribute("class", "an");
+            document.getElementById("v13").setAttribute("class", "an");
+            document.getElementById("v14").setAttribute("class", "an");
+            document.getElementById("v15").setAttribute("class", "an");
+            document.getElementById("v16").setAttribute("class", "an");
+            document.getElementById("v17").setAttribute("class", "an");
+            document.getElementById("v18").setAttribute("class", "an");
+            document.getElementById("v19").setAttribute("class", "an");
+            document.getElementById("v113").setAttribute("class", "an");
+            document.getElementById("v114").setAttribute("class", "an");
+            document.getElementById("v115").setAttribute("class", "an");
+            document.getElementById("v116").setAttribute("class", "an");
+            document.getElementById("v117").setAttribute("class", "an");
+            document.getElementById("v118").setAttribute("class", "an");
+            document.getElementById("v112").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v21() {
+        var boxe = document.getElementById("v21");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v22").setAttribute("class", "an");
+            document.getElementById("v23").setAttribute("class", "an");
+            document.getElementById("v24").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v22() {
+        var boxe = document.getElementById("v22");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v21").setAttribute("class", "an");
+            document.getElementById("v23").setAttribute("class", "an");
+            document.getElementById("v24").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v23() {
+        var boxe = document.getElementById("v23");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v22").setAttribute("class", "an");
+            document.getElementById("v21").setAttribute("class", "an");
+            document.getElementById("v24").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v24() {
+        var boxe = document.getElementById("v24");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v22").setAttribute("class", "an");
+            document.getElementById("v23").setAttribute("class", "an");
+            document.getElementById("v21").setAttribute("class", "an");
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v31() {
+        var boxe = document.getElementById("v31");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v32() {
+        var boxe = document.getElementById("v32");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v33() {
+        var boxe = document.getElementById("v33");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v34() {
+        var boxe = document.getElementById("v34");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v35() {
+        var boxe = document.getElementById("v35");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v36() {
+        var boxe = document.getElementById("v36");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v37() {
+        var boxe = document.getElementById("v37");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v38() {
+        var boxe = document.getElementById("v38");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v39() {
+        var boxe = document.getElementById("v39");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v310() {
+        var boxe = document.getElementById("v310");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v311() {
+        var boxe = document.getElementById("v311");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v312() {
+        var boxe = document.getElementById("v312");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v313() {
+        var boxe = document.getElementById("v313");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+            document.getElementById("v314").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+    function v314() {
+        var boxe = document.getElementById("v314");
+        if (boxe.className == "an") {
+            boxe.setAttribute("class", "asks-content-ansitemv11");
+            document.getElementById("v32").setAttribute("class", "an");
+            document.getElementById("v33").setAttribute("class", "an");
+            document.getElementById("v34").setAttribute("class", "an");
+            document.getElementById("v35").setAttribute("class", "an");
+            document.getElementById("v36").setAttribute("class", "an");
+            document.getElementById("v37").setAttribute("class", "an");
+            document.getElementById("v38").setAttribute("class", "an");
+            document.getElementById("v39").setAttribute("class", "an");
+            document.getElementById("v310").setAttribute("class", "an");
+            document.getElementById("v311").setAttribute("class", "an");
+            document.getElementById("v312").setAttribute("class", "an");
+            document.getElementById("v313").setAttribute("class", "an");
+            document.getElementById("v31").setAttribute("class", "an");
+
+        }
+        else {
+            boxe.setAttribute("class", "an");
+        }
+    }
+</script>
+

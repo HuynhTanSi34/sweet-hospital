@@ -1,0 +1,161 @@
+﻿@model SweetHospitalver3.Models.HOSO
+
+@{
+    ViewBag.Title = "Chi tiết hồ sơ";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    SweetHospitalver3.Models.HospitalDbContext db = new SweetHospitalver3.Models.HospitalDbContext();
+}
+<style>
+    .reupcontent {
+        width: 100% !important;
+    }
+
+    .circlegreen {
+        height: 10px;
+        width: 10px;
+        background-color: #F2494C;
+        border-radius: 50%;
+    }
+
+    .reupsubmit {
+        margin: 20px 0 300px 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .table-editdelete:hover, .bi-trash:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #FC0004;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .table-editpencil:hover, .bi-pencil:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #22FC00;
+    }
+
+    .table-editpencil {
+        margin-right: 10px;
+    }
+
+    .m-21 {
+        margin: 8px 70px 8px 8px;
+    }
+
+    .col-sm-12 {
+        margin-bottom: 20px;
+    }
+
+    .content-full {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 250px !important;
+    }
+
+    .table-statusedit-circlegreen {
+        height: 10px;
+        width: 10px;
+        background-color: #22FC00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-statusedit-circlered {
+        height: 10px;
+        width: 10px;
+        background-color: #FC0004;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    tr:hover {
+        cursor: pointer;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Chi tiết hồ sơ bệnh nhân</h2>
+    <div class="col-sm-12 col-xl-6 reupcontent">
+        <div class="bg-light rounded h-100 p-4">
+            <h6 class="mb-4">Mã hồ sơ: @Model.MaHS</h6>
+            <dl class="row mb-0">
+                <dt class="col-sm-4">Tài khoản</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.TK</div></dd>
+
+                <dt class="col-sm-4">Họ và tên</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.HoTen</div></dd>
+
+                <dt class="col-sm-4">Ngày tháng năm sinh</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.NgaySinh.ToString("dd/MM/yyyy")</div></dd>
+
+                <dt class="col-sm-4">Số điện thoại</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.Sdt</div></dd>
+
+                <dt class="col-sm-4">Giới tính</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.GioiTinh</div></dd>
+
+                <dt class="col-sm-4">Nghê nghiệp</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.NgheNghiep</div></dd>
+
+                <dt class="col-sm-4">CCCD/CMND</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.CCCD</div></dd>
+
+                <dt class="col-sm-4">Email</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.Email</div></dd>
+
+                <dt class="col-sm-4">Dân tộc</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.DanToc</div></dd>
+
+                <dt class="col-sm-4">Địa chỉ</dt>
+                <dd class="col-sm-8"><div class="p-2 mb-2 bg-white text-dark">@Model.DiaChi</div></dd>
+
+            </dl>
+        </div>
+    </div>
+    <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Lịch sử khám bệnh</h6>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Mã phiếu</th>
+                                <th scope="col">Kết quả</th>
+                                <th scope="col">Chuẩn đoán</th>
+                                <th scope="col">Ngày khám</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var items in db.KETQUA.Where(x=>x.MaHS==Model.MaHS))
+                            {
+                                <tr onclick="window.location.href = '/Admin/Record/Recordhistory/@items.MaPhieu';">
+                                    <td>@items.MaPhieu</td>
+                                    <td class="content-full">@items.KetQua1</td>
+                                    <td class="content-full">@items.ChuanDoan</td>
+                                    <td>@items.NgayKham</td>
+                                    <td><div class="table-statusedit-circlegreen"></div> @items.TrangThai</td>
+                                    <td><a href="/Admin/Record/Editrecordhis/@items.MaPhieu" class="table-editpencil"><i class="bi bi-pencil"></i></a> <a href="#" class="table-editdelete"><i class="bi bi-trash"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <div class="reupsubmit">
+        <button type="button" class="btn btn-outline-secondary m-21" onclick="window.location.href='/Admin/Record/Record';">Quay lại</button>
+        <button type="button" class="btn btn-outline-success m-21" onclick="window.location.href = '/Admin/Record/Editrecord/@Model.MaHS';">Sửa hồ sơ bệnh nhân</button>
+        <button type="button" class="btn btn-outline-primary m-2" onclick="window.location.href = '/Admin/Record/Createrecordhis@*/@Model.MaHS*@';">Thêm kết quả khám bệnh</button>
+    </div>
+</div>

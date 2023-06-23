@@ -1,0 +1,273 @@
+﻿
+@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .news-content-row {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .news-content-row1 {
+        grid-row: 1 / 3;
+        width: 540px;
+    }
+
+    .news-content-row1image {
+        height: 324px;
+        width: 540px;
+        border-radius: 8px;
+    }
+
+    .news-content-row1title {
+        font-size: 20px;
+        font-weight: bolder;
+        text-transform: uppercase;
+    }
+
+    .news-content-row1name {
+        font-weight: bolder;
+        font-size: 15px;
+        color: #777;
+    }
+
+    .news-content-row1cont {
+        font-size: 15px;
+    }
+
+    .news-content-row2 {
+        padding: 30px 0 0 25px;
+    }
+
+    .news-content-col {
+        width: 800px;
+        margin-top: 20px;
+    }
+
+    .news-content-col-item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+        height: 180px;
+        margin-bottom: 40px;
+    }
+
+    .news-content-col-itemimg {
+        border-radius: 8px;
+        height: 168px;
+        width: 280px;
+    }
+
+    .news-content-col-itemcont {
+        padding-left: 20px;
+    }
+
+    .news-content-col-itemconttitle {
+        font-size: 16px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+    }
+
+    .news-content-col-itemconttime {
+        font-size: 14px;
+        color: #777;
+    }
+
+    .news-content-col-itemcontcont {
+        font-size: 16px;
+    }
+
+    .listPage {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+    }
+
+        .listPage li {
+            padding: 10px;
+            display: inline-block;
+            margin: 0 3px;
+            cursor: pointer;
+        }
+
+            .listPage li:hover {
+                background-color: #06A3DA;
+            }
+
+        .listPage .active {
+            background-color: #06A3DA;
+            color: #fff;
+        }
+</style>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Tin tức</h1>
+            <a href="/Home" class="h4 text-white">Trang chủ</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="#" class="h4 text-white">Tin tức</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="news-content-row">
+            <div class="news-content-row1">
+                <div>
+                    <img src="https://cms.medpro.com.vn/uploads/1679627620766_46b6669f05.png"
+                         alt="" asp-append-version="true" class="news-content-row1image" />
+                </div>
+                <br />
+                <div>
+                    <p class="news-content-row1title">BỆNH VIỆN CHỢ RẪY: ĐÃ GIẢI QUYẾT TRIỆT ĐỂ TÌNH TRẠNG THIẾU THUỐC, VẬT TƯ, TRANG THIẾT BỊ Y TẾ</p>
+                    <p class="news-content-row1name">NGUYEN CAM</p>
+                    <p class="news-content-row1cont">Sự lây lan của cúm A/H1N1 là một vấn đề đáng lo ngại trong cộng đồng. Sau khi ghi nhận hàng chục học sinh tại một trường tiểu học nghỉ ốm bất thường, ngành y tế TPHCM đã tiến hành lấy mẫu xét nghiệm ngẫu nhiên 6 trường hợp. Tất cả 6 mẫu đều dương tính với cúm A/H1N1</p>
+                </div>
+            </div>
+            <div class="news-content-row2">
+                <p class="news-content-row1title">CÁC CHÙM CA NHIỄM CÚM A/H1N1 ĐANG BÙNG PHÁT Ở TP.HCM CỰC KỲ NGUY HIỂM!</p>
+                <p class="news-content-row1name">NGUYEN CAM</p>
+                <p class="news-content-row1cont">Tại Bệnh viện Chợ Rẫy, đơn vị y tế tuyến cuối tại khu vực phía Nam, sau gần 3 tuần các chính sách được ban hành, việc mua sắm vật tư y tế khấu hao thuận lợi hơn; nhiều trang thiết bị y tế được sửa chữa đưa vào hoạt động trở lại; phục vụ nhu cầu chăm sóc sức khỏe của bệnh nhân, trong đó...</p>
+            </div>
+            <div class="news-content-row2">
+                <p class="news-content-row1title">BỆNH VIỆN QUỐC TẾ CITY CHÍNH THỨC CÓ MẶT TRÊN MEDPRO</p>
+                <p class="news-content-row1name">NGUYEN CAM</p>
+                <p class="news-content-row1cont">Chào mừng đến với bệnh viện Quốc tế City - nơi cung cấp dịch vụ y tế đẳng cấp quốc tế và có đội ngũ bác sĩ, chuyên gia giàu kinh nghiệm để giúp bạn chăm sóc sức khỏe một cách tốt nhất.</p>
+            </div>
+        </div>
+        <div class="news-content-col">
+            <div class="news-content-col-item">
+                <img src="https://cms.medpro.com.vn/uploads/1679627620766_46b6669f05.png"
+                     alt="" asp-append-version="true" class="news-content-col-itemimg" />
+                <div class="news-content-col-itemcont">
+                    <p class="news-content-col-itemconttitle">BỆNH VIỆN CHỢ RẪY: ĐÃ GIẢI QUYẾT TRIỆT ĐỂ TÌNH TRẠNG THIẾU THUỐC, VẬT TƯ, TRANG THIẾT BỊ Y TẾ</p>
+                    <p class="news-content-col-itemconttime">24/03/2023, 10:22</p>
+                    <p class="news-content-col-itemcontcont">Tại Bệnh viện Chợ Rẫy, đơn vị y tế tuyến cuối tại khu vực phía Nam, sau gần 3 tuần các chính sách được ban hành, việc mua sắm vật tư y tế khấu hao thuận lợi hơn; nhiều tra...</p>
+                </div>
+            </div>
+            <div class="news-content-col-item">
+                <img src="https://cms.medpro.com.vn/uploads/1679627620766_46b6669f05.png"
+                     alt="" asp-append-version="true" class="news-content-col-itemimg" />
+                <div class="news-content-col-itemcont">
+                    <p class="news-content-col-itemconttitle">BỆNH VIỆN CHỢ RẪY: ĐÃ GIẢI QUYẾT TRIỆT ĐỂ TÌNH TRẠNG THIẾU THUỐC, VẬT TƯ, TRANG THIẾT BỊ Y TẾ</p>
+                    <p class="news-content-col-itemconttime">24/03/2023, 10:22</p>
+                    <p class="news-content-col-itemcontcont">Tại Bệnh viện Chợ Rẫy, đơn vị y tế tuyến cuối tại khu vực phía Nam, sau gần 3 tuần các chính sách được ban hành, việc mua sắm vật tư y tế khấu hao thuận lợi hơn; nhiều tra...</p>
+                </div>
+            </div>
+            <div class="news-content-col-item">
+                <img src="https://cms.medpro.com.vn/uploads/1679627620766_46b6669f05.png"
+                     alt="" asp-append-version="true" class="news-content-col-itemimg" />
+                <div class="news-content-col-itemcont">
+                    <p class="news-content-col-itemconttitle">BỆNH VIỆN CHỢ RẪY: ĐÃ GIẢI QUYẾT TRIỆT ĐỂ TÌNH TRẠNG THIẾU THUỐC, VẬT TƯ, TRANG THIẾT BỊ Y TẾ</p>
+                    <p class="news-content-col-itemconttime">24/03/2023, 10:22</p>
+                    <p class="news-content-col-itemcontcont">Tại Bệnh viện Chợ Rẫy, đơn vị y tế tuyến cuối tại khu vực phía Nam, sau gần 3 tuần các chính sách được ban hành, việc mua sắm vật tư y tế khấu hao thuận lợi hơn; nhiều tra...</p>
+                </div>
+            </div>
+            <div class="news-content-col-item">
+                <img src="https://cms.medpro.com.vn/uploads/1679627620766_46b6669f05.png"
+                     alt="" asp-append-version="true" class="news-content-col-itemimg" />
+                <div class="news-content-col-itemcont">
+                    <p class="news-content-col-itemconttitle">BỆNH VIỆN CHỢ RẪY: ĐÃ GIẢI QUYẾT TRIỆT ĐỂ TÌNH TRẠNG THIẾU THUỐC, VẬT TƯ, TRANG THIẾT BỊ Y TẾ</p>
+                    <p class="news-content-col-itemconttime">24/03/2023, 10:22</p>
+                    <p class="news-content-col-itemcontcont">Tại Bệnh viện Chợ Rẫy, đơn vị y tế tuyến cuối tại khu vực phía Nam, sau gần 3 tuần các chính sách được ban hành, việc mua sắm vật tư y tế khấu hao thuận lợi hơn; nhiều tra...</p>
+                </div>
+            </div>
+            <div class="news-content-col-item">
+                <img src="https://cms.medpro.com.vn/uploads/1679627620766_46b6669f05.png"
+                     alt="" asp-append-version="true" class="news-content-col-itemimg" />
+                <div class="news-content-col-itemcont">
+                    <p class="news-content-col-itemconttitle">BỆNH VIỆN CHỢ RẪY: ĐÃ GIẢI QUYẾT TRIỆT ĐỂ TÌNH TRẠNG THIẾU THUỐC, VẬT TƯ, TRANG THIẾT BỊ Y TẾ</p>
+                    <p class="news-content-col-itemconttime">24/03/2023, 10:22</p>
+                    <p class="news-content-col-itemcontcont">Tại Bệnh viện Chợ Rẫy, đơn vị y tế tuyến cuối tại khu vực phía Nam, sau gần 3 tuần các chính sách được ban hành, việc mua sắm vật tư y tế khấu hao thuận lợi hơn; nhiều tra...</p>
+                </div>
+            </div>
+            <div class="news-content-col-item">
+                <img src="https://cms.medpro.com.vn/uploads/1679627620766_46b6669f05.png"
+                     alt="" asp-append-version="true" class="news-content-col-itemimg" />
+                <div class="news-content-col-itemcont">
+                    <p class="news-content-col-itemconttitle">BỆNH VIỆN CHỢ RẪY: ĐÃ GIẢI QUYẾT TRIỆT ĐỂ TÌNH TRẠNG THIẾU THUỐC, VẬT TƯ, TRANG THIẾT BỊ Y TẾ</p>
+                    <p class="news-content-col-itemconttime">24/03/2023, 10:22</p>
+                    <p class="news-content-col-itemcontcont">Tại Bệnh viện Chợ Rẫy, đơn vị y tế tuyến cuối tại khu vực phía Nam, sau gần 3 tuần các chính sách được ban hành, việc mua sắm vật tư y tế khấu hao thuận lợi hơn; nhiều tra...</p>
+                </div>
+            </div>
+            <div class="news-content-col-item">
+                <img src="https://cms.medpro.com.vn/uploads/1679627620766_46b6669f05.png"
+                     alt="" asp-append-version="true" class="news-content-col-itemimg" />
+                <div class="news-content-col-itemcont">
+                    <p class="news-content-col-itemconttitle">BỆNH VIỆN CHỢ RẪY: ĐÃ GIẢI QUYẾT TRIỆT ĐỂ TÌNH TRẠNG THIẾU THUỐC, VẬT TƯ, TRANG THIẾT BỊ Y TẾ</p>
+                    <p class="news-content-col-itemconttime">24/03/2023, 10:22</p>
+                    <p class="news-content-col-itemcontcont">Tại Bệnh viện Chợ Rẫy, đơn vị y tế tuyến cuối tại khu vực phía Nam, sau gần 3 tuần các chính sách được ban hành, việc mua sắm vật tư y tế khấu hao thuận lợi hơn; nhiều tra...</p>
+                </div>
+            </div>
+            <div class="news-content-col-item">
+                <img src="https://cms.medpro.com.vn/uploads/1679627620766_46b6669f05.png"
+                     alt="" asp-append-version="true" class="news-content-col-itemimg" />
+                <div class="news-content-col-itemcont">
+                    <p class="news-content-col-itemconttitle">BỆNH VIỆN CHỢ RẪY: ĐÃ GIẢI QUYẾT TRIỆT ĐỂ TÌNH TRẠNG THIẾU THUỐC, VẬT TƯ, TRANG THIẾT BỊ Y TẾ</p>
+                    <p class="news-content-col-itemconttime">24/03/2023, 10:22</p>
+                    <p class="news-content-col-itemcontcont">Tại Bệnh viện Chợ Rẫy, đơn vị y tế tuyến cuối tại khu vực phía Nam, sau gần 3 tuần các chính sách được ban hành, việc mua sắm vật tư y tế khấu hao thuận lợi hơn; nhiều tra...</p>
+                </div>
+            </div>
+            <ul class="listPage">
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    let thisPage = 1;
+    let limit = 6;
+    let list = document.querySelectorAll('.news-content-col .news-content-col-item');
+
+    function loadItem() {
+        let beginGet = limit * (thisPage - 1);
+        let endGet = limit * thisPage - 1;
+        list.forEach((item, key) => {
+            if (key >= beginGet && key <= endGet) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        })
+        listPage();
+    }
+    loadItem();
+    function listPage() {
+        let count = Math.ceil(list.length / limit);
+        document.querySelector('.listPage').innerHTML = '';
+
+        if (thisPage != 1) {
+            let prev = document.createElement('li');
+            prev.innerText = '<';
+            prev.setAttribute('onclick', "changePage(" + (thisPage - 1) + ")");
+            document.querySelector('.listPage').appendChild(prev);
+        }
+
+        for (i = 1; i <= count; i++) {
+            let newPage = document.createElement('li');
+            newPage.innerText = i;
+            if (i == thisPage) {
+                newPage.classList.add('active');
+            }
+            newPage.setAttribute('onclick', "changePage(" + i + ")");
+            document.querySelector('.listPage').appendChild(newPage);
+        }
+
+        if (thisPage != count) {
+            let next = document.createElement('li');
+            next.innerText = '>';
+            next.setAttribute('onclick', "changePage(" + (thisPage + 1) + ")");
+            document.querySelector('.listPage').appendChild(next);
+        }
+    }
+    function changePage(i) {
+        thisPage = i;
+        loadItem();
+    }
+</script>
+

@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "Instruct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .instruct-content-center-li {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: stretch;
+        align-content: stretch;
+        margin-top: 50px;
+    }
+
+    .content-center-doc {
+        z-index: 2;
+        height: 18px;
+        width: 18px;
+        background-color: #06A3DA;
+        clip-path: circle(50%);
+        position: relative;
+        right: -10px;
+        top: 25px;
+    }
+
+    .content-center-step {
+        min-width: 100px;
+        display: flex;
+        padding-top: 22px;
+        justify-content: flex-start;
+    }
+
+        .content-center-step b, .content-center-div b {
+            font-size: 18px;
+            text-align: left;
+            text-transform: uppercase;
+            color: #06A3DA;
+        }
+
+    .content-center-div {
+        border-width: 0px 0px 1px 3px;
+        border-style: solid;
+        border-color: rgb(233, 236, 242);
+        padding: 22px 20px 20px 22px;
+        max-width: 700px;
+    }
+
+        .content-center-div p ul {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+    .blue {
+        font-weight: bold;
+    }
+</style>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Hướng dẫn đặt lịch</h1>
+            <a href="/Home" class="h4 text-white">Trang chủ</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="#" class="h4 text-white">Hướng dẫn</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <ul>
+            <li class="instruct-content-center-li">
+                <div class="content-center-step"><b>BƯỚC 1</b></div>
+                <div class="content-center-doc"></div>
+                <div class="content-center-div">
+                    <p><b>Đăng ký tài khoản</b></p>
+                    <p><u class="blue">Cách 1: Nhập số điện thoại</u></p>
+                    <ul>
+                        <li>Nhập số điện thoại</li>
+                        <li>Xác minh OTP để đăng ký tài khoản (Trong vòng 2 phút, sau 2 phút cần phải yêu cầu cấp mã mới).</li>
+                        <li>Bổ sung thông tin tài khoản: Họ và tên; Mật khẩu; Xác nhận lại mật khẩu; Ngày sinh; Giới tính; Email.</li>
+                        <li>Chọn đăng ký để hoàn tất tạo tài khoản.</li>
+                    </ul>
+                    <br />
+                    <p><u class="blue">Cách 2: Đăng ký bằng social</u></p>
+
+                    <ul>
+                        <li>Chọn social Zalo, Facebook, Google, Apple.</li>
+                        <li>Nhập số điện thoại để xác minh OTP.</li>
+                        <li>Bổ sung thông tin tài khoản: Họ và tên; Mật khẩu; Xác nhận lại mật khẩu; Ngày sinh; Giới tính; Email.</li>
+                        <li>Chọn đăng ký để hoàn tất tạo tài khoản.</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="instruct-content-center-li">
+                <div class="content-center-step"><b>BƯỚC 2</b></div>
+                <div class="content-center-doc"></div>
+                <div class="content-center-div">
+                    <p><b>Đặt lịch khám</b></p>
+                    <br />
+
+                    <div class="blue">CHỌN THÔNG TIN ĐẶT KHÁM</div>
+                    <br />
+                    <ul>
+                        <li>Đăng nhập phần mềm trên web hoặc ứng dụng di động.</li>
+                        <li>Chọn Đặt khám tại cơ sở hoặc Đặt khám theo bác sĩ.</li>
+                        <li>Chọn thông tin khám: Chuyên khoa, bác sĩ, ngày khám, giờ khám và có BHYT hay không.</li>
+                        <li>Nhập thông tin bệnh nhân: Chọn hồ sơ sẵn có hoặc tạo mới hồ sơ.</li>
+                    </ul>
+                    <br />
+                    <div class="blue">CHỌN / TẠO MỚI HỒ SƠ BỆNH NHÂN (Bạn được phép tạo tối đa 10 hồ sơ)</div>
+                    <br />
+                    <ul>
+                        <li>Cách 1: Quét mã BHYT.</li>
+                        <li>Cách 2: Nếu đã từng khám ở bệnh viện, nhập số hồ sơ.</li>
+                        <li>Cách 3: Chưa từng khám, đăng ký mới (nhập đầy đủ các thông tin: Họ và tên; Ngày sinh; Giới tính; Mã bảo hiểm y tế; CMND/Passport; Dân tộc; Nghề nghiệp; Số điện thoại; Email; Địa chỉ)</li>
+                    </ul>
+                    <br />
+                    <div class="blue">THANH TOÁN PHÍ KHÁM</div>
+                    <br />
+                    <ul>
+                        <li>Chọn phương thức thanh toán: Quét mã QR, Chuyển khoản 24/7, Thẻ khám bệnh, Thẻ thanh toán quốc tế hoặc thẻ ATM nội địa hoặc Ví điện tử.</li>
+                        <li>Kiểm tra thông tin thanh toán (phí khám bệnh, phí tiện ích và tổng tiền) và Xác nhận thanh toán.</li>
+                        <li>Thực hiện thanh toán trên Ví điện tử hoặc Ứng dụng Ngân hàng hoặc Cổng thanh toán.</li>
+                    </ul>
+                    <br />
+                    <div class="blue">NHẬN PHIẾU KHÁM ĐIỆN TỬ</div>
+                    <br />
+                    <ul>
+                        <li>Sau khi thanh toán thành công, bạn sẽ nhận được ngay phiếu khám bệnh điện tử trên ứng dụng (và qua email). Trường hợp đặt khám qua Tổng đài 19002115, vui lòng xem phiếu khám được gửi qua tin nhắn SMS.</li>
+                    </ul>
+                </div>
+            </li>
+            <li class="instruct-content-center-li">
+                <div class="content-center-step"><b>BƯỚC 3</b></div>
+                <div class="content-center-doc"></div>
+                <div class="content-center-div">
+                    <p><b>KHÁM VÀ THỰC HIỆN CẬN LÂM SÀNG</b></p>
+                    <p>Đến ngày khám, người bệnh vui lòng đến trực tiếp phòng khám hoặc quầy tiếp nhận theo như hướng dẫn trên phiếu khám.</p>
+                    <p>Người bệnh được khám lâm sàng theo quy trình của Bệnh viện.</p>
+                    <p>Nếu có chỉ định cận lâm sàng của bác sĩ, người bệnh thanh toán phí trực tuyến hoặc tại quầy thu ngân của bệnh viện và vào phòng cận lâm sàng để được thực hiện.</p>
+                    <p>Người bệnh quay lại phòng khám ban đầu, sau khi nhận đầy đủ kết quả cận lâm sàng, để được bác sĩ khám, tư vấn và trả kết quả khám (toa thuốc, giấy hẹn khám,...).</p>
+                </div>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+

@@ -1,0 +1,127 @@
+﻿@model SweetHospitalver3.Models.PHIEUHEN
+
+@{
+    ViewBag.Title = "Createndo";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    SweetHospitalver3.Models.HospitalDbContext bb = new SweetHospitalver3.Models.HospitalDbContext();
+}
+<style>
+    .reupsubmit {
+        margin: 30px 0 10px 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .m-21 {
+        margin: 8px 70px 8px 8px;
+    }
+
+    .editaccountfix {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        width: 700px !important;
+    }
+
+    .p-4 {
+        margin-bottom: 50px;
+        padding-right: 0 !important;
+    }
+
+    .col-xl-6 {
+        width: 80%;
+    }
+
+    .col-sm-2 {
+        width: 24%;
+    }
+
+    .col-sm-10 {
+        width: 70%;
+        padding-right: 0 !important;
+    }
+
+    .mb33 {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Thêm phiếu hẹn</h2>
+    <div class="col-sm-12 col-xl-6">
+        <div class="bg-light rounded h-100 p-4">
+            @using (Html.BeginForm("Createndo", "Numberdoctor", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "Thêm phiếu thất bại", new { @class = "alert alert-danger" })
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Mã hồ sơ</label>
+                    <div class="col-sm-10">
+                        <select class="form-select row mb-3 mb33"
+                                aria-label="Default select example" name="MaHS" id="MaHS">
+                            <option value="Rỗng" selected>Chọn hồ sơ (Mã hồ sơ | Tên bệnh nhân)</option>
+                            @foreach (var item in bb.HOSO.ToList())
+                            {
+                                <option value="@item.MaHS">@item.MaHS | @item.HoTen</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Chọn giờ Bác sĩ</label>
+                    <div class="col-sm-10">
+                        <select class="form-select row mb-3 mb33"
+                                aria-label="Default select example" name="MaDK" id="MaDK">
+                            <option value="Rỗng" selected>Chọn giờ Bác sĩ</option>
+                            @foreach (var item in bb.THOIGIANBS.ToList())
+                            {
+                                <option value="@item.MaDK">@item.BACSI.HoTen | @item.Ngay.ToString("dd/MM/yyyy") | @item.Gio</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <!--<div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Ngày hẹn</label>
+                    <div class="col-sm-10">
+                        <select class="form-select row mb-3 mb33"
+                                aria-label="Default select example" name="NgayHen">-->
+                            @*@foreach (var item in bb.THOIGIANBS.Where(x => x.MaBS == Model.MaBS).ToList())
+                                {
+                                    <option value="@item.Ngay">@item.Ngay</option>
+                                }*@
+                        <!--</select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Giờ hẹn</label>
+                    <div class="col-sm-10">
+                        <select class="form-select row mb-3 mb33"
+                                aria-label="Default select example" name="GioHen">-->
+                            @*@foreach (var item in bb.THOIGIANBS.Where(x => x.Ngay == Model.NgayHen).ToList())
+                                {
+                                    <option value="@item.Gio">@item.Gio</option>
+                                }*@
+                        <!--</select>
+                    </div>
+                </div>-->
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Trạng thái</label>
+                    <div class="col-sm-10">
+                        <select class="form-select row mb-3 mb33"
+                                aria-label="Default select example" name="TrangThai" id="TrangThai">
+                            <option value="Đã khám">Đã khám</option>
+                            <option value="Chưa khám">Chưa khám</option>
+                            <option value="Đã hủy lịch">Đã hủy lịch</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="reupsubmit">
+                    <button type="button" class="btn btn-outline-secondary m-21" onclick="window.location.href='/Admin/Numberdoctor/Numberdoctor';">Hủy</button>
+                    <button type="submit" class="btn btn-outline-primary m-2">Tạo phiếu hẹn mới</button>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

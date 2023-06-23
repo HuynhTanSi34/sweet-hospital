@@ -1,0 +1,125 @@
+﻿@model SweetHospitalver3.Models.CAPSO
+
+@{
+    ViewBag.Title = "Editnd";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    SweetHospitalver3.Models.HospitalDbContext bb = new SweetHospitalver3.Models.HospitalDbContext();
+}
+<style>
+    .reupsubmit {
+        margin: 30px 0 10px 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .m-21 {
+        margin: 8px 70px 8px 8px;
+    }
+
+    .editaccountfix {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        width: 700px !important;
+    }
+
+    .p-4 {
+        margin-bottom: 50px;
+        padding-right: 0 !important;
+    }
+
+    .col-xl-6 {
+        width: 80%;
+    }
+
+    .col-sm-2 {
+        width: 24%;
+    }
+
+    .col-sm-10 {
+        width: 70%;
+        padding-right: 0 !important;
+    }
+
+    .mb33 {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Sửa hồ sơ bệnh nhân</h2>
+    <div class="col-sm-12 col-xl-6">
+        <div class="bg-light rounded h-100 p-4">
+            @using (Html.BeginForm("Editnd", "Numberday", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "Cập nhật thất bại", new { @class = "alert alert-danger" })
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Số thứ tự</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.STT, new { @class = "form-control", @id = "STT", @type = "text" })
+
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Họ và tên</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.HoTen, new { @class = "form-control", @id = "HoTen", @type = "text" })
+
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Số điện thoại</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.Sdt, new { @class = "form-control", @id = "HoTen", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @id = "HoTen", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Khoa</label>
+                    <div class="col-sm-10">
+                        <select class="form-select row mb-3 mb33"
+                                aria-label="Default select example" name="Khoa">
+                            @foreach (var item in bb.DSKHOA.ToList())
+                            {
+                                <option value="@item.Khoa" @(item.Khoa == Model.Khoa ? "selected" : "")>@item.Khoa</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Thời gian cấp</label>
+                    <div class="col-sm-10">
+                        <div class="p-2 mb-2 bg-white text-dark">@Model.ThoiGian.ToString("dd/MM/yyyy")</div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Trạng thái</label>
+                    <div class="col-sm-10">
+                        <select class="form-select row mb-3 mb33"
+                                aria-label="Default select example" name="TrangThai">
+                            <option value="Đã bỏ" @(Model.TrangThai == "Đã bỏ" ? "selected" : "")>Đã bỏ</option>
+                            <option value="Đã sử dụng" @(Model.TrangThai == "Đã sử dụng" ? "selected" : "")>Đã sử dụng</option>
+                            <option value="Đang chờ" @(Model.TrangThai == "Đang chờ" ? "selected" : "")>Đang chờ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="reupsubmit">
+                    <button type="button" class="btn btn-outline-secondary m-21" onclick="window.location.href='/Admin/Numberday/Numberday';">Hủy</button>
+                    <button type="submit" class="btn btn-outline-primary m-2" onclick="all()">Lưu</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    function all() {
+        alert("Cập nhật thành công");
+    }
+</script>

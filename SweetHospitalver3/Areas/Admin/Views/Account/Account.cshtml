@@ -1,0 +1,195 @@
+﻿@model PagedList.PagedList<SweetHospitalver3.Models.TAIKHOAN>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<style>
+    .table-editpencil:hover, .bi-pencil:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #22FC00;
+    }
+
+    .table-editpencil {
+        margin-right: 15px;
+    }
+
+    td, th {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .table-statusedit-circlegreen {
+        height: 10px;
+        width: 10px;
+        background-color: #22FC00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-statusedit-circlered {
+        height: 10px;
+        width: 10px;
+        background-color: #FC0004;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-statusedit-circleyellow {
+        height: 10px;
+        width: 10px;
+        background-color: #FCDB00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-editdelete:hover, .bi-trash:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #FC0004;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .account-search {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .account-search2 {
+        height: 40px !important;
+        margin-left: 80px;
+        border: 1px solid #EBF2F7 !important;
+        border-radius: 5px;
+        width: 30%;
+    }
+
+    .account-search3 {
+        width: 20% !important;
+        height: 40px !important;
+    }
+
+    .account-add1:hover {
+        transform: translateY(-5px);
+    }
+
+    tr:hover {
+        cursor: pointer;
+    }
+
+    .pagination {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+    }
+
+        .pagination li {
+            padding: 10px;
+            display: inline-block;
+            margin: 0 3px;
+            cursor: pointer;
+            color: #009CFF;
+            border-color: #009CFF;
+            font-size: 15px;
+        }
+
+    li.active {
+        background-color: #FFFFFF;
+        border: 1px solid #009CFF;
+    }
+
+    .pagination li:hover {
+        background-color: #FFFFFF;
+        border: 1px solid #009CFF;
+    }
+
+    .tdmk {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 200px;
+    }
+
+    .tdbs {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 300px;
+    }
+
+    .mb-3 {
+        width: 20%;
+    }
+
+    .col-12 {
+        margin-bottom: 50px;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Danh sách tài khoản</h2>
+    @using (Html.BeginForm("Account", "Account", FormMethod.Get))
+    {
+        <div class="account-search">
+            <div class="form-floating mb-3">
+                <select class="form-select"
+                        id="floatingSelect"
+                        aria-label="Floating label select example" name="searchChucdanh">
+                    <option value="">Tất cả</option>
+                    <option value="Bệnh nhân">Bệnh nhân</option>
+                    <option value="Bác sĩ">Bác sĩ</option>
+                    <option value="Nhân viên">Nhân viên</option>
+                </select>
+                <label for="floatingSelect">Chức danh</label>
+            </div>
+            <input class="form-control border-0 account-search2" type="search" placeholder="Search" name="searchString" value="@ViewBag.SearchString">
+            <input type="submit" class="btn btn-outline-primary m-2" value="Tìm kiếm" />
+
+        </div>
+    }
+    <div class="col-12">
+        <div class="bg-light rounded h-100 p-4">
+            <button type="button" class="btn btn-info rounded-pill m-2 account-add1" onclick="window.location.href='/Admin/Account/Createacc';">+ Thêm tài khoản</button>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tài khoản</th>
+                            <th scope="col">Mật khẩu</th>
+
+                            <th scope="col">Chức danh</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="row_@item.TK">
+                                <td>@item.TK</td>
+                                <td class="tdmk">@item.Pass</td>
+                                <td>@item.ChucDanh</td>
+                                <td><div class="@(@item.TrangThai == "Đang làm việc" ? "table-statusedit-circlegreen" :"") @(@item.TrangThai == "Đã nghỉ việc" ? "table-statusedit-circlered" :"") @(@item.TrangThai == "Bệnh nhân" ? "table-statusedit-circleyellow" :"") "></div> @item.TrangThai</td>
+
+                                <td><a href="/Admin/Account/Editacc/@item.Id" class="table-editpencil">Sửa</a>  @Ajax.ActionLink("Xóa", "Delete", new { @id = item.TK, @class = "table-editdelete" }, new AjaxOptions { Confirm = "Bạn có muốn xóa tài khoản này?", OnComplete = "$('#row_" + @item.TK + "').remove()", HttpMethod = "Delete" })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model, page => Url.Action("Account", new { page, @searchString = @ViewBag.SearchString }))
+            </div>
+        </div>
+    </div>
+</div>

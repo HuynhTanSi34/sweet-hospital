@@ -1,0 +1,277 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    SweetHospitalver3.Models.HospitalDbContext db = new SweetHospitalver3.Models.HospitalDbContext();
+}
+<style>
+
+    .hoso-title span, .hoso-title span a {
+        font-size: 16px;
+        font-weight: 400;
+        color: white;
+        text-decoration: none;
+    }
+
+    .hoso-title > div {
+        padding-left: 250px;
+    }
+
+    .hoso-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        padding-top: 20px;
+    }
+
+    .hoso-contentl {
+        width: 380px;
+    }
+
+        .hoso-contentl ul {
+            list-style-type: none;
+            padding: 0px;
+            font-size: 16px;
+        }
+
+            .hoso-contentl ul li {
+                padding: 10px 16px 10px 24px;
+                border-radius: 0 20px 20px 0;
+            }
+
+                .hoso-contentl ul li a {
+                    border-radius: 0 20px 20px 0;
+                    width: 340px !important;
+                }
+
+                    .hoso-contentl ul li a:hover {
+                        background-color: #f79879;
+                        border-color: #f68b68;
+                        color: white;
+                    }
+
+    .hoso-contentr, .phieukham-content, .thongbao-content {
+        padding-left: 50px;
+        width: 800px;
+    }
+
+        .hoso-contentr ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .hoso-contentr b, .phieukham-content b, .thongbao-content b {
+            font-size: 20px;
+        }
+
+    .hoso-contentrkodata, .phieukham-contentrkodata, .thongbao-contentrkodata {
+        margin-top: 30px;
+        font-size: 16px;
+        display: none;
+    }
+
+    .hoso-contentrlist {
+        height: 215px;
+        width: 100%;
+        border: 1px solid rgb(223, 227, 235);
+        margin-top: 30px;
+        padding: 5px 10px 10px 16px;
+    }
+
+    .hoso-contentritem1 {
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 10px 0 4px 0;
+    }
+
+        .hoso-contentritem1 div {
+            color: #06A3DA;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .hoso-contentritem1 button {
+            border: none;
+            background-color: white;
+            margin-right: 20px;
+            padding: 8px 12px 8px 12px;
+            color: #06A3DA;
+            box-sizing: border-box;
+            position: relative;
+            width: 110px;
+        }
+
+            .hoso-contentritem1 button::before, .hoso-contentritem1 button::after {
+                content: '';
+                box-sizing: border-box;
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                transform-origin: center;
+            }
+
+            .hoso-contentritem1 button::before {
+                border-top: 0.2em solid #06A3DA;
+                border-bottom: 0.2em solid #06A3DA;
+                transform: scale3d(0, 1, 1);
+            }
+
+            .hoso-contentritem1 button::after {
+                border-left: 0.2em solid #06A3DA;
+                border-right: 0.2em solid #06A3DA;
+                transform: scale3d(1, 0, 1);
+            }
+
+            .hoso-contentritem1 button:hover::before, .hoso-contentritem1 button:hover::after {
+                transform: scale3d(1, 1, 1);
+                transition: transform 900ms;
+            }
+
+    .hoso-contentrlist svg {
+        position: relative;
+        top: 2px;
+        margin-right: 5px;
+    }
+
+    .hoso-contentritem1 button a {
+        color: #06A3DA;
+    }
+
+        .hoso-contentritem1 button a:hover {
+            text-decoration: none;
+        }
+
+    .hoso-contentritem2 {
+        display: flex;
+        flex-direction: row;
+        font-size: 16px;
+        width: 100%;
+        padding: 10px 0 10px 0;
+    }
+
+        .hoso-contentritem2 div {
+            width: 150px;
+        }
+
+    .hoso-contentritem3 {
+        border-top: 1px solid rgb(223, 227, 235);
+        margin-top: 10px;
+        padding-top: 14px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+    }
+
+        .hoso-contentritem3 button {
+            width: 120px;
+            padding: 5px 0 5px 0;
+            text-align: center;
+            margin-right: 7px;
+            border: none;
+            background-color: white;
+        }
+
+            .hoso-contentritem3 button:nth-child(1) {
+                color: #fd397a;
+            }
+
+                .hoso-contentritem3 button:nth-child(1):hover {
+                    background-color: #fd397a;
+                    color: white;
+                }
+
+            .hoso-contentritem3 button:nth-child(2) {
+                color: #3699ff;
+            }
+
+                .hoso-contentritem3 button:nth-child(2):hover {
+                    background-color: #3699ff;
+                    color: white;
+                }
+
+    i {
+        margin-right: 5px;
+    }
+</style>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Thông tin cá nhân</h1>
+            <a href="/Client/Home" class="h4 text-white">Trang chủ</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="#" class="h4 text-white">Thông tin cá nhân</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="hoso-content">
+        <div class="hoso-contentl">
+            <a class="btn btn-primary py-2 px-4 ms-3" href="/Client/Profile/Profilerecordadd" style="margin-bottom:15px; font-size:20px;">
+                <i class="bi bi-person-check-fill"></i> Thêm hồ sơ bệnh nhân
+            </a>
+            <ul>
+                <li>
+                    <a class="btn btn-secondary py-2 px-4 ms-3" href="#"><i class="bi bi-person-lines-fill"></i> Hồ sơ bệnh nhân</a>
+                </li>
+                <li>
+                    <a class="btn  py-2 px-4 ms-3" href="/Client/ScheduleUser/ScheduleUser"><i class="bi bi-file-earmark-plus-fill"></i> Phiếu khám bệnh</a>
+                </li>
+                <li>
+                    <a class="btn  py-2 px-4 ms-3" href="/Client/ResultRecord/ResultRecord"><i class="bi bi-align-start"></i> Lịch sử khám bệnh</a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="hoso-contentr">
+            <p>PATIENT'S RECORDS</p>
+            <b>Danh sách hồ sơ bệnh nhân</b>
+            @*<div class="hoso-contentrkodata"><p>Bạn chưa có hồ sơ bệnh nhân. Vui lòng tạo mới hồ sơ để được đặt khám.</p></div>*@
+        <ul>
+            @foreach (var items in db.HOSO.Where(x => x.TK == "Hayetop"))
+            {
+                <li class="hoso-contentrlist">
+                    <ul>
+                        <li class="hoso-contentritem1">
+                            <div>
+                                <i class="bi bi-person-circle"></i>     @items.HoTen
+                            </div>
+                            <button onclick="window.location.href = '/Client/Profile/Profilerecordinfor';">Xem thêm</button>
+                        </li>
+                        <li class="hoso-contentritem2">
+                            <div>
+                                <i class="bi bi-phone-fill"></i> Điện thoại
+                            </div>
+                            <span><strong>@items.Sdt</strong></span>
+                        </li>
+                        <li class="hoso-contentritem2">
+                            <div>
+                                <i class="bi bi-house-door"></i> Địa chỉ
+                            </div>
+                            <span>@items.DiaChi</span>
+                        </li>
+                        <li class="hoso-contentritem3">
+                            <button>
+                                <i class="bi bi-trash"></i> Xóa hồ sơ
+                            </button>
+                            <button onclick="window.location.href = '/Client/Profile/Profilerecordedit/@items.MaHS';">
+                                <i class="bi bi-pencil-square"></i> Sửa hồ sơ
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            }
+        </ul>
+            <div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

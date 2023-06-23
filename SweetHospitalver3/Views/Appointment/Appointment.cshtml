@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Appointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .chonhinhthuc {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        background-color: #ffffffe6;
+        box-shadow: 0 6px 24px 0 rgba(0,0,0,.05), 0 0 0 1px rgba(0,0,0,.08);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 30px auto 15px auto;
+    }
+
+        .chonhinhthuc span {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 50px;
+        }
+
+    .chonhinhthuc-func {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .chonhinhthuc img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    .chonhinhthuc a {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+        padding: 8px 0 8px 10px;
+        width: 335px;
+        box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+        margin-right: 20px;
+        border-radius: 5px;
+        margin-bottom: 30px;
+        cursor: pointer;
+    }
+
+        .chonhinhthuc a p {
+            padding: 0;
+            margin-top: 5px;
+            height: 50%;
+        }
+
+    .chonhinhthuc-func a p {
+        margin-top: 5px;
+    }
+
+    .chonhinhthuc-func a {
+        border-bottom: 2px solid #06A3DA;
+        cursor: pointer;
+        overflow: hidden;
+        transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        position: relative;
+    }
+
+        .chonhinhthuc-func a:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            width: 2px;
+            background: #06A3DA;
+            transform: translateY(100%);
+            transition: transform 0.2s ease-in-out;
+            transition-delay: 0.6s;
+        }
+
+        .chonhinhthuc-func a > p {
+            position: relative;
+            display: block;
+            padding: 0.5em;
+            color: inherit;
+        }
+
+            .chonhinhthuc-func a > p:before, .chonhinhthuc-func a > p:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: #06A3DA;
+                transition: transform 0.2s ease-in-out;
+            }
+
+            .chonhinhthuc-func a > p:before {
+                height: 2px;
+                width: 100%;
+                transform: translateX(100%);
+                transition-delay: 0.4s;
+            }
+
+            .chonhinhthuc-func a > p:after {
+                height: 100%;
+                width: 2px;
+                transform: translateY(-100%);
+                transition-delay: 0.2s;
+            }
+
+        .chonhinhthuc-func a:hover:after, .chonhinhthuc-func a:hover > p:before, .chonhinhthuc-func a:hover > p:after {
+            transform: translate(0, 0);
+        }
+
+        .chonhinhthuc-func a:hover:after {
+            transition-delay: 0s;
+        }
+
+        .chonhinhthuc-func a:hover > p:before {
+            transition-delay: 0.2s;
+        }
+
+        .chonhinhthuc-func a:hover > p:after {
+            transition-delay: 0.4s;
+        }
+
+        .chonhinhthuc-func a:hover {
+            color: white;
+            background-color: #06A3DA;
+            transition-delay: 0.6s;
+        }
+</style>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Đặt lịch khám</h1>
+            <a href="/Home" class="h4 text-white">Trang chủ</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="#" class="h4 text-white">Đặt lịch khám</a>
+        </div>
+    </div>
+</div>
+<section class="chonhinhthuc">
+    <span>CÁC HÌNH THỨC ĐẶT LỊCH </span>
+    <div class="chonhinhthuc-func">
+        <a href="/Appointment/AppDay">
+            <img src="~/Content/img/medical-checkup.png" asp-append-version="true" />
+            <p>Đặt lịch khám theo ngày</p>
+        </a>
+        <a href="/Appointment/AppDoctor">
+            <img src="~/Content/img/doctor.png" asp-append-version="true" />
+            <p>Đặt lịch khám theo Bác sĩ</p>
+        </a>
+    </div>
+</section>
+

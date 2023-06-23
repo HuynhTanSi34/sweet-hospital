@@ -1,0 +1,109 @@
+﻿@model SweetHospitalver3.Models.PHANHOI
+@{
+    ViewBag.Title = "Trả lời phản hồi";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<style>
+    .reupcontent {
+        width: 100% !important;
+    }
+
+    .circlegreen {
+        height: 10px;
+        width: 10px;
+        background-color: #F2494C;
+        border-radius: 50%;
+    }
+
+    .reupsubmit {
+        margin: 20px 0 300px 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .m-21 {
+        margin: 8px 70px 8px 8px;
+    }
+        .example button:focus {
+            outline: none;
+        }
+
+        .example button:hover {
+            background-color: #33DE23;
+        }
+
+        .example button:active {
+            background-color: #81ccee;
+        }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Chi tiết phản hồi</h2>
+    @using (Html.BeginForm("Editfb", "Feedback", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "Cập nhật thất bại", new { @class = "alert alert-danger" })
+        <div class="col-sm-12 col-xl-6 reupcontent">
+
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">12:30:45 - 20/5/2023</h6>
+
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Họ và tên</dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(x => x.HoTen, new { @class = "form-control", @id = "HoTen", @type = "text" })
+                    </dd>
+
+                    <dt class="col-sm-4">Số điện thoại</dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(model => model.Sdt, new { @class = "form-control", @type = "text" })
+                    </dd>
+
+                    <dt class="col-sm-4">Email</dt>
+                    <dd class="col-sm-8">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "text" })
+                    </dd>
+
+                    <dt class="col-sm-4 text-truncate">Nội dung</dt>
+                    <dd class="col-sm-8">
+                        <div class="form-floating">
+                            @Html.TextAreaFor(model => model.NoiDung, new
+                            {
+                           @class = "form-control",
+                                @placeholder = "Leave a comment here"
+                                      ,
+                                @id = "floatingTextarea",
+                                @style = "height: 150px;"
+                       })
+                        </div>
+                    </dd>
+
+                    <dt class="col-sm-4">Nội dung trả lời</dt>
+                    <dd class="col-sm-8">
+                        <div class="form-floating">
+                            @Html.TextAreaFor(model => model.TraLoi, new
+                            {
+                           @class = "form-control",
+                                @placeholder = "Leave a comment here"
+                                      ,
+                                @id = "floatingTextarea",
+                                @style = "height: 150px;"
+                       })
+                        </div>
+                    </dd>
+                    <dt class="col-sm-4">Trạng thái</dt>
+                    <dd class="col-sm-8">
+                        <select class="form-select mb-3"
+                                aria-label="Default select example" name="TrangThai">
+                            <option value="Đã trả lời" @(Model.TrangThai == "Đã trả lời" ? "selected" : "")>Đã trả lời</option>
+                            <option value="Chưa trả lời" @(Model.TrangThai == "Chưa trả lời" ? "selected" : "")>Chưa trả lời</option>
+                        </select>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="reupsubmit">
+            <button type="button" class="btn btn-outline-secondary m-21" onclick="window.location.href='/Admin/Feedback/Feedback';">Hủy</button>
+            <button type="submit" class="btn btn-outline-primary m-2">Lưu</button>
+        </div>
+    }
+</div>

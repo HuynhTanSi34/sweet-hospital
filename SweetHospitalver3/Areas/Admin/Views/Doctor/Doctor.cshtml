@@ -1,0 +1,218 @@
+﻿@model PagedList.PagedList<SweetHospitalver3.Models.BACSI>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Danh sách Bác sĩ";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+    SweetHospitalver3.Models.HospitalDbContext bb = new SweetHospitalver3.Models.HospitalDbContext();
+}
+<style>
+    .table-editpencil:hover, .bi-pencil:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #22FC00;
+    }
+
+    .table-editpencil {
+        margin-right: 15px;
+    }
+
+    td, th {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .table-statusedit-circlegreen {
+        height: 10px;
+        width: 10px;
+        background-color: #22FC00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-statusedit-circlered {
+        height: 10px;
+        width: 10px;
+        background-color: #FC0004;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-statusedit-circleyellow {
+        height: 10px;
+        width: 10px;
+        background-color: #FCDB00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-editdelete:hover, .bi-trash:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #FC0004;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .account-search {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .account-search2 {
+        height: 40px !important;
+        margin-left: 80px;
+        border: 1px solid #EBF2F7 !important;
+        border-radius: 5px;
+        width: 30%;
+    }
+
+    .account-search3 {
+        width: 20% !important;
+        height: 40px !important;
+    }
+
+    .account-add1:hover {
+        transform: translateY(-5px);
+    }
+
+    tr:hover {
+        cursor: pointer;
+    }
+
+    .pagination {
+        padding: 10px;
+        text-align: center;
+        list-style: none;
+    }
+
+        .pagination li {
+            padding: 10px;
+            display: inline-block;
+            margin: 0 3px;
+            cursor: pointer;
+            color: #009CFF;
+            border-color: #009CFF;
+            font-size: 15px;
+        }
+
+    li.active {
+        background-color: #FFFFFF;
+        border: 1px solid #009CFF;
+    }
+
+    .pagination li:hover {
+        background-color: #FFFFFF;
+        border: 1px solid #009CFF;
+    }
+
+    .tdmk {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 200px;
+    }
+
+    .tdbs {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 300px;
+    }
+
+    .mb-3 {
+        width: 20%;
+    }
+
+    .mb311 {
+        width: 30%;
+    }
+    .table-seepencil:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+    }
+
+    .table-seepencil {
+        margin-right: 15px;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Danh sách Bác sĩ</h2>
+    @using (Html.BeginForm("Doctor", "Doctor", FormMethod.Get))
+    {
+        <div class="account-search">
+            <div class="form-floating mb-3 mb311">
+                <select class="form-select"
+                        id="floatingSelect"
+                        aria-label="Floating label select example" name="searchKhoa">
+                    <option value="">Tất cả</option>
+                    @foreach (var tik in bb.DSKHOA.ToList())
+                    {
+
+                        <option value="@tik.Khoa">@tik.Khoa</option>
+                    }
+                </select>
+                <label for="floatingSelect">Khoa</label>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select"
+                        id="floatingSelect"
+                        aria-label="Floating label select example" name="searchTrangThai">
+                    <option value="">Tất cả</option>
+                    <option value="Đang làm việc">Đang làm việc</option>
+                    <option value="Đã nghỉ việc">Đã nghỉ việc</option>
+                </select>
+                <label for="floatingSelect">Trạng thái</label>
+            </div>
+            <input class="form-control border-0 account-search2" type="search" placeholder="Search" name="searchString" value="@ViewBag.SearchString">
+            <input type="submit" class="btn btn-outline-primary m-2" value="Tìm kiếm" />
+
+        </div>
+    }
+    <div class="col-12">
+        <div class="bg-light rounded h-100 p-4">
+            <button type="button" class="btn btn-info rounded-pill m-2 account-add1" onclick="window.location.href='/Admin/Doctor/Createdoctor';">+ Thêm Bác sĩ</button>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Mã BS</th>
+                            <th scope="col">Họ và tên</th>
+                            <th scope="col">Khoa</th>
+                            <th scope="col">Ngày bắt đầu làm việc</th>
+                            <th scope="col">Trạng thái</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var items in Model)
+                        {
+                            <tr id="row_@items.MaBS">
+                                <td >@items.MaBS</td>
+                                <td >@items.HoTen</td>
+                                <td >@items.Khoa</td>
+                                <td >@items.NgayBD.ToString("dd/MM/yyyy")</td>
+                                <td ><div class="@(@items.TrangThai == "Đang làm việc" ? "table-statusedit-circlegreen" :"") @(@items.TrangThai == "Đã nghỉ việc" ? "table-statusedit-circlered" :"") "></div> @items.TrangThai</td>
+                                <td><a href="/Admin/Doctor/Doctorinfor/@items.MaBS" class="table-seepencil">Xem</a><a href="/Admin/Doctor/Editdoctor/@items.MaBS" class="table-editpencil">Sửa</a>  @Ajax.ActionLink("Xóa", "Delete", new { @id = items.MaBS, @class = "table-editdelete" }, new AjaxOptions { Confirm = "Bạn có muốn xóa thông tin bác sĩ này?", OnComplete = "$('#row_" + items.MaBS + "').remove()", HttpMethod = "Delete" })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.PagedListPager(Model, page => Url.Action("Staff", new { page, @searchString = @ViewBag.SearchString }))
+            </div>
+        </div>
+    </div>
+</div>
+
+

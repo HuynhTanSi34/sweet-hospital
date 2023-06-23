@@ -1,0 +1,113 @@
+﻿@model SweetHospitalver3.Models.CAPSO 
+@{
+    ViewBag.Title = "AppDay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    SweetHospitalver3.Models.HospitalDbContext db = new SweetHospitalver3.Models.HospitalDbContext();
+}
+<style>
+    .col-xl-4 {
+        width: 50% !important;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .mb-0 {
+        margin-bottom: 25px !important;
+    }
+
+    .danger {
+        display: none;
+    }
+</style>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Đặt lịch khám</h1>
+            <a href="/Home" class="h4 text-white">Trang chủ</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="/Appointment/Appointment" class="h4 text-white">Đặt lịch khám</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="#" class="h4 text-white">Đặt lịch khám theo ngày</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-5">
+    <div class="container">
+        <h1 class="display-5 mb-0">Cấp số thứ tự</h1>
+        <div class="row g-5">
+            <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+                @using (Html.BeginForm("AppDay", "Appointment", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "Cấp số thất bại, vui lòng điền đủ thông tin.", new { @class = "alert alert-danger" })
+                    @*@Html.ValidationSummary(false, "Cấp số thất bại", new { @class = "alert alert-danger" })*@
+                    <div class="row g-3">
+                        <div class="col-12">
+                            @Html.TextBoxFor(x => x.HoTen, new { @class = "form-control border-0 bg-light px-4", @style = "height: 55px;", @id = "HoTen", @type = "text", @placeholder = "Họ và tên" })
+                        </div>
+                        <div class="col-12">
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control border-0 bg-light px-4", @style = "height: 55px;", @id = "Email", @type = "email", @placeholder = "Email" })
+                        </div>
+                        <div class="col-12">
+                            @Html.TextBoxFor(x => x.Sdt, new { @class = "form-control border-0 bg-light px-4", @style = "height: 55px;", @id = "Sdt", @type = "text", @placeholder = "Số điện thoại" })
+                        </div>
+                        <div class="col-12">
+                            <select class="form-select bg-light border-0 mb-3" style="height: 40px;" name="Khoa" id="Khoa">
+                                <option >Chọn khoa</option>
+                                @foreach (var items in db.DSKHOA.ToList())
+                                {
+                                    <option value="@items.Khoa">@items.Khoa</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <p>* Điền đầy đủ thông tin để có thể nhận được kết quả sớm nhất.</p>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit" onclick="message()">Cấp số</button>
+                        </div>
+                    </div>
+                    <div class="col-12" id="danger">
+                        <p style="color:red;" class="danger">* Cấp số thất bại, hãy xem lại thông tin trên.</p>
+                    </div>
+                }
+            </div>
+            <div class="col-xl-4 col-lg-12 wow slideInUp" data-wow-delay="0.6s">
+                <iframe class="position-relative rounded w-100 h-100"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.787874151555!2d106.69744577490849!3d10.827539189324352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528f4a62fce9b%3A0xc99902aa1e26ef02!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBWxINuIExhbmc!5e0!3m2!1svi!2s!4v1686482701571!5m2!1svi!2s"
+                        frameborder="0" style="min-height: 400px; border:0;" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function message() {
+        var name = document.getElementById("HoTen");
+        var email = document.getElementById("Email");
+        var sdt = document.getElementById("Sdt");
+        var khoa = document.getElementById("Khoa");
+        const danger = document.getElementById("danger");
+        if (name.value == "" || email.value == "" || sdt.value == "" || khoa.value == "Chọn khoa") {
+            danger.style.display = "block";
+        }
+        else {
+            setTimeout(() => {
+                name.value = "";
+                email.value = "";
+                sdt.value = "";
+                khoa.value = "Chọn khoa";
+            }, 2000);
+            alert("Cấp thành công. Kết quả sẽ được trả sau vài phút, hãy để ý Email hoặc Điện thoại.");
+        }
+        setTimeout(() => {
+            danger.style.display = "block";
+        }, 4000);
+    }
+</script>
+
+

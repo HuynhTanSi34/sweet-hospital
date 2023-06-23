@@ -1,0 +1,223 @@
+﻿@model SweetHospitalver3.Models.HOSO
+@{
+    ViewBag.Title = "Profilerecordadd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .hoso-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        padding-top: 20px;
+    }
+
+    .hoso-contentl {
+        width: 380px;
+    }
+
+        .hoso-contentl ul {
+            list-style-type: none;
+            padding: 0px;
+            font-size: 18px;
+        }
+
+            .hoso-contentl ul li {
+                padding: 10px 16px 10px 24px;
+                border-radius: 0 20px 20px 0;
+            }
+
+                .hoso-contentl ul li a {
+                    border-radius: 0 20px 20px 0;
+                    width: 340px !important;
+                }
+
+                    .hoso-contentl ul li a:hover {
+                        background-color: #f79879;
+                        border-color: #f68b68;
+                        color: white;
+                    }
+
+    .hoso-contentr, .phieukham-content, .thongbao-content {
+        padding-left: 50px;
+        width: 800px;
+    }
+
+    .formaddhoso {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        align-content: center;
+    }
+
+        .formaddhoso span {
+            border-bottom: 2px solid #dfe3eb;
+            padding: 30px 0 30px 0;
+            text-align: center;
+        }
+
+        .formaddhoso .formaddhoso1 {
+            font-weight: 600;
+            padding: 50px 0 30px 0;
+        }
+
+        .formaddhoso .formaddhoso2 {
+            background-color: #D7FCE7;
+            color: #009641;
+            padding: 15px;
+        }
+
+        .formaddhoso .formaddhoso3 {
+            color: red;
+            width: 100%;
+            font-size: 12px;
+            padding: 10px 0px;
+        }
+
+        .formaddhoso form {
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 10px 0 10px 0;
+            border-bottom: 2px solid #dfe3eb;
+            width: 100%;
+        }
+
+            .formaddhoso form .form-item {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                padding-right: 25px;
+                margin-bottom: 25px;
+            }
+
+    .form-item sup {
+        color: red;
+    }
+
+    .form-item label {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .form-item input {
+        padding: 8px 0 8px 10px;
+        border-color: rgba(3,42,95,.1);
+        border-radius: 10px;
+    }
+
+    .form-item select {
+        padding: 8px 0 8px 10px;
+        border-color: rgba(3,42,95,.1);
+        border-radius: 10px;
+    }
+
+        .form-item input:focus, .form-item select:focus {
+            outline: 1px solid #17FCFA;
+        }
+
+            .form-item input:focus::-moz-placeholder {
+                color: blue;
+            }
+
+    form button {
+        margin-top: 30px;
+    }
+</style>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Thông tin cá nhân</h1>
+            <a href="/Client/Home" class="h4 text-white">Trang chủ</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="/Client/Profile/Profile" class="h4 text-white">Thông tin cá nhân</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="#" class="h4 text-white">Thêm hồ sơ mới</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="hoso-content">
+        <div class="hoso-contentl">
+            <a class="btn btn-primary py-2 px-4 ms-3" href="#" style="margin-bottom:15px; font-size:20px;">
+                <i class="bi bi-person-check-fill"></i> Thêm hồ sơ bệnh nhân
+            </a>
+            <ul>
+                <li>
+                    <a class="btn btn-secondary py-2 px-4 ms-3" href="/Client/Profile/Profile"><i class="bi bi-person-lines-fill"></i> Hồ sơ bệnh nhân</a>
+                </li>
+                <li>
+                    <a class="btn  py-2 px-4 ms-3"><i class="bi bi-file-earmark-plus-fill"></i> Phiếu khám bệnh</a>
+                </li>
+                <li>
+                    <a class="btn  py-2 px-4 ms-3"><i class="bi bi-align-start"></i> Lịch sử khám bệnh</a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="hoso-contentr">
+            <p>PATIENT'S RECORDS</p>
+            <b style="font-size:20px;">Thêm hồ sơ bệnh nhân</b>
+            <section class="formaddhoso">
+                <div class="formaddhoso1">NHẬP THÔNG TIN BỆNH NHÂN</div>
+                <div class="formaddhoso2">Vui lòng cung cấp thông tin chính xác để được phục vụ tốt nhất. Trong trường hợp cung cấp sai thông tin bệnh nhân & điện thoại, việc xác nhận cuộc hẹn sẽ không hiệu lực trước khi đặt khám.</div>
+                <div class="formaddhoso3">(*) Thông tin bắt buộc nhập</div>
+                @using (Html.BeginForm("Profilerecordadd", "Profile", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "Tạo hồ sơ thất bại, vui lòng điền đủ thông tin.", new { @class = "alert alert-danger" })
+                    <div class="form-item">
+                        <label>Họ và tên (có dấu) <sup>*</sup></label>
+                        @Html.TextBoxFor(x => x.HoTen, new { @id = "HoTen", @type = "text", @placeholder = "Ví dụ: Nguyễn Văn Bảo" })
+                    </div>
+                    <div class="form-item input-daterange" id="input-daterange">
+                        <label>Ngày tháng năm sinh <sup>*</sup></label>
+                        @Html.TextBoxFor(x => x.NgaySinh, new { @id = "NgaySinh", @type = "date"})                        
+                    </div>
+                    <div class="form-item">
+                        <label>Số điện thoại <sup>*</sup></label>
+                        @Html.TextBoxFor(x => x.Sdt, new { @id = "Sdt", @type = "type", @placeholder = "Nhập số điện thoại" })
+                    </div>
+                    <div class="form-item">
+                        <label>Giới tính <sup>*</sup></label>
+                        <select name="GioiTinh" id="GioiTinh" required>
+                            <option value="Nam">Nam</option>
+                            <option value="Nu">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label>Nghề nghiệp <sup>*</sup></label>
+                        @Html.TextBoxFor(x => x.NgheNghiep, new { @id = "NgheNghiep", @type = "text", @placeholder = "Nhập nghề nghiệp" })
+                    </div>
+                    <div class="form-item">
+                        <label>Số CMND/CCCD/Passport</label>
+                        @Html.TextBoxFor(x => x.CCCD, new { @id = "CCCD", @type = "type", @placeholder = "Nhập căn cước công dân..." })
+                    </div>
+                    <div class="form-item">
+                        <label>Địa chỉ email</label>
+                        @Html.TextBoxFor(x => x.Email, new { @id = "Email", @type = "email", @placeholder = "Nhập địa chỉ email để nhận phiếu hẹn" })
+                    </div>
+                    <div class="form-item">
+                        <label>Dân tộc</label>
+                        <select name="DanToc" id="DanToc">
+                            <option value="kinh">Kinh</option>
+                            <option value="hoa">Hoa</option>
+
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label>Địa chỉ <sup>*</sup></label>
+                        @Html.TextBoxFor(x => x.DiaChi, new { @id = "DiaChi", @type = "text", @placeholder = "Nhập địa chỉ cụ thể" })
+                    </div>
+                    <div class="form-item">
+                        <button class="btn btn-primary py-2 px-4 ms-3" type="submit">Tạo hồ sơ</button>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>
+

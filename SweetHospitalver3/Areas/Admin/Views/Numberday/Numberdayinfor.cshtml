@@ -1,0 +1,115 @@
+﻿@model SweetHospitalver3.Models.CAPSO
+
+@{
+    ViewBag.Title = "Chi tiết cấp số";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<style>
+    .reupcontent {
+        width: 100% !important;
+    }
+
+    .circlegreen {
+        height: 10px;
+        width: 10px;
+        background-color: #F2494C;
+        border-radius: 50%;
+    }
+
+    .reupsubmit {
+        margin: 20px 0 300px 0px;
+        display: flex;
+        justify-content: center;
+        width: 50%;
+    }
+
+    .table-editdelete:hover, .bi-trash:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #FC0004;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .table-editpencil:hover, .bi-pencil:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+        color: #22FC00;
+    }
+
+    .table-editpencil {
+        margin-right: 10px;
+    }
+
+    .m-21 {
+        margin: 8px 70px 8px 8px;
+    }
+
+    .col-sm-12 {
+        margin-bottom: 20px;
+    }
+
+    .content-full {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 250px !important;
+    }
+
+    .table-statusedit-circlegreen {
+        height: 10px;
+        width: 10px;
+        background-color: #22FC00;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    .table-statusedit-circlered {
+        height: 10px;
+        width: 10px;
+        background-color: #FC0004;
+        border-radius: 50%;
+        display: inline-block;
+        margin-bottom: 2px;
+        margin-right: 8px;
+    }
+
+    tr:hover {
+        cursor: pointer;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Thông tin phiếu khám bệnh</h2>
+    <div class="col-sm-12 col-xl-6">
+        <div class="bg-light rounded h-100 p-4">
+            <h6 class="mb-4">@Html.DisplayNameFor(model => model.STT) : @Model.STT</h6>
+            <dl class="row mb-0">
+                <dt class="col-sm-4">Họ và tên</dt>
+                <dd class="col-sm-8">@Model.HoTen</dd>
+
+                <dt class="col-sm-4">Số điện thoại</dt>
+                <dd class="col-sm-8">+84 @Model.Sdt</dd>
+
+                <dt class="col-sm-4">Email</dt>
+                <dd class="col-sm-8">@Model.Email</dd>
+
+                <dt class="col-sm-4">Khoa</dt>
+                <dd class="col-sm-8">@Model.Khoa</dd>
+
+                <dt class="col-sm-4">Thời gian cấp</dt>
+                <dd class="col-sm-8">@Model.ThoiGian.ToString("dd/MM/yyyy")</dd>
+
+                <dt class="col-sm-4">Trạng thái</dt>
+                <dd class="col-sm-8">@Model.TrangThai</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="reupsubmit">
+        <button type="button" class="btn btn-outline-secondary m-21" onclick="window.location.href='/Admin/Numberday/Numberday';">Quay lại</button>
+        <button type="button" class="btn btn-outline-primary m-2" onclick="window.location.href = '/Admin/Numberday/Editnd/@Model.STT';">Sửa phiếu khám bệnh</button>
+    </div>
+</div>

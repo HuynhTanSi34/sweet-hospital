@@ -1,0 +1,134 @@
+﻿@model SweetHospitalver3.Models.HOSO
+
+@{
+    ViewBag.Title = "Tạo hồ sơ bệnh nhân";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+<style>
+    .reupsubmit {
+        margin: 30px 0 10px 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .m-21 {
+        margin: 8px 70px 8px 8px;
+    }
+
+    .editaccountfix {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        width: 700px !important;
+    }
+
+    .p-4 {
+        margin-bottom: 50px;
+        padding-right: 0 !important;
+    }
+
+    .col-xl-6 {
+        width: 80%;
+    }
+
+    .col-sm-2 {
+        width: 24%;
+    }
+
+    .col-sm-10 {
+        width: 70%;
+        padding-right: 0 !important;
+    }
+
+    .mb33 {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <h2>Tạo hồ sơ mới</h2>
+    <div class="col-sm-12 col-xl-6">
+        <div class="bg-light rounded h-100 p-4">
+            @using (Html.BeginForm("Createrecord", "Record", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "Cập nhật thất bại", new { @class = "alert alert-danger" })
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Tài khoản</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.TK, new { @class = "form-control", @id = "TK", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Mã hồ sơ</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.MaHS, new { @class = "form-control", @id = "MaHS", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Họ và tên</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.HoTen, new { @class = "form-control", @id = "HoTen", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Ngày sinh</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.NgaySinh, new { @class = "form-control", @id = "NgaySinh", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Số điện thoại</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.Sdt, new { @class = "form-control", @id = "Sdt", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">CMND/CCCD</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.CCCD, new { @class = "form-control", @id = "CCCD", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @id = "Email", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Địa chỉ</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.DiaChi, new { @class = "form-control", @id = "DiaChi", @type = "text" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Giới tính</label>
+                    <div class="col-sm-10">
+                        <select class="form-select row mb-3 mb33"
+                                aria-label="Default select example" name="GioiTinh" id="GioiTinh">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Nghề nghiệp</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.NgheNghiep, new { @class = "form-control", @id = "NgheNghiep", @type = "datetime" })
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Dân tộc</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(x => x.DanToc, new { @class = "form-control", @id = "DanToc", @type = "text" })
+                    </div>
+                </div>
+                <div class="reupsubmit">
+                    <button type="button" class="btn btn-outline-secondary m-21" onclick="window.location.href='/Admin/Record/Record';">Hủy</button>
+                    <input type="submit" class="btn btn-outline-primary m-2" value="Lưu" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
